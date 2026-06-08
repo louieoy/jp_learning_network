@@ -1,0 +1,358 @@
+/* ============================================================
+   stage4-common.css
+   階段四主頁與各領域詳細頁共用的樣式
+   編輯設計時請優先修改此檔案，以保持全站一致
+   ============================================================ */
+
+/* ===== 基本設定 ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #faf9f7;
+  color: #334155;
+  line-height: 1.65;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ===== 頂部導覽列 ===== */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
+}
+
+.navbar-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0.85rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.navbar-brand {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #1e293b;
+}
+
+.navbar-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.navbar-links a {
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  color: #64748b;
+  transition: background 0.2s, color 0.2s;
+}
+
+.navbar-links a:hover {
+  background: #f1f5f9;
+  color: #1e293b;
+}
+
+/* ===== 主內容區 ===== */
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 3.5rem;
+}
+
+/* 主頁／詳細頁共用的頁首 */
+.hero,
+.detail-hero {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 0.35rem 1rem;
+  background: #fff;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  color: #64748b;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1rem;
+}
+
+.hero h1,
+.detail-hero h1 {
+  font-size: clamp(1.35rem, 4vw, 1.85rem);
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.02em;
+}
+
+.hero-desc {
+  max-width: 640px;
+  margin: 0 auto;
+  font-size: 1rem;
+  color: #64748b;
+}
+
+/* 區塊標題 */
+.section-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 1rem;
+  padding-left: 0.5rem;
+  border-left: 3px solid #cbd5e1;
+}
+
+section {
+  margin-bottom: 2.75rem;
+}
+
+/* 白卡片（通用） */
+.content-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 1.35rem 1.5rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+/* ===== 四大領域卡片（主頁） ===== */
+.domain-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+/* 可點擊的卡片外層連結 */
+.domain-card-link {
+  display: block;
+  color: inherit;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.domain-card-link:hover {
+  transform: translateY(-3px);
+}
+
+.domain-card-link:focus-visible {
+  outline: 2px solid #64748b;
+  outline-offset: 4px;
+}
+
+.domain-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 1.25rem;
+  height: 100%;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.domain-card-link:hover .domain-card {
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.1);
+}
+
+.domain-icon {
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.domain-card h3 {
+  font-size: 1.05rem;
+  color: #1e293b;
+  margin-bottom: 0.35rem;
+}
+
+.domain-card p {
+  font-size: 0.88rem;
+  color: #64748b;
+}
+
+/* 點擊提示文字 */
+.card-cta {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #64748b;
+  transition: color 0.2s;
+}
+
+.domain-card-link:hover .card-cta {
+  color: #1e293b;
+}
+
+.domain-card.politics { border-top: 3px solid #93c5fd; }
+.domain-card.economy { border-top: 3px solid #86efac; }
+.domain-card.history { border-top: 3px solid #fcd34d; }
+.domain-card.culture { border-top: 3px solid #f9a8d4; }
+
+.domain-card-link:hover .domain-card.politics { border-top-color: #3b82f6; }
+.domain-card-link:hover .domain-card.economy { border-top-color: #22c55e; }
+.domain-card-link:hover .domain-card.history { border-top-color: #eab308; }
+.domain-card-link:hover .domain-card.culture { border-top-color: #ec4899; }
+
+/* ===== 圓角按鈕 ===== */
+.btn-round {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1.1rem;
+  border: none;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  background: #fff;
+  color: #475569;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+a.btn-round {
+  text-decoration: none;
+}
+
+.btn-round:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.btn-round.active {
+  background: #1e293b;
+  color: #fff;
+}
+
+.btn-primary {
+  background: #1e293b;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: #334155;
+}
+
+/* ===== 詳細頁：やさしい説明（日文） ===== */
+.desc-ja {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 1.02rem;
+  line-height: 2;
+  color: #334155;
+}
+
+.desc-ja p {
+  margin-bottom: 0.85rem;
+}
+
+.desc-ja p:last-child {
+  margin-bottom: 0;
+}
+
+/* ===== 詳細頁：重要単語リスト ===== */
+.vocab-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.vocab-item {
+  background: #fff;
+  border-radius: 16px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.vocab-term {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.vocab-reading {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 0.9rem;
+  color: #0f766e;
+  margin-left: 0.15rem;
+}
+
+.vocab-meaning {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.92rem;
+  color: #64748b;
+}
+
+/* ===== 詳細頁：資料ソース ===== */
+.source-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.source-card p {
+  margin-bottom: 0.5rem;
+}
+
+.source-card p:last-child {
+  margin-bottom: 0;
+}
+
+.source-link {
+  color: #2563eb;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  word-break: break-all;
+}
+
+.source-link:hover {
+  color: #1d4ed8;
+}
+
+/* ===== 詳細頁：底部／頂部導覽按鈕列 ===== */
+.page-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+  padding-top: 0.5rem;
+}
+
+/* 詳細頁主題色（hero-badge 上緣） */
+body.theme-politics .hero-badge { border-top: 2px solid #93c5fd; }
+body.theme-economy .hero-badge { border-top: 2px solid #86efac; }
+body.theme-history .hero-badge { border-top: 2px solid #fcd34d; }
+body.theme-culture .hero-badge { border-top: 2px solid #f9a8d4; }
+
+/* 頁尾 */
+footer {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #94a3b8;
+  padding: 1rem 1.25rem 1.5rem;
+}

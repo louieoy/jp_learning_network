@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>階段四：研究期｜深度日本 — 日文學習網站</title>
+  <!-- 字型：閱讀友善的 Noto Sans TC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ===== 基本設定 ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #faf9f7; /* 教材頁柔和背景 */
+      color: #334155;
+      line-height: 1.65;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ===== 頂部導覽列 ===== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .navbar-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .navbar-brand {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #1e293b;
+    }
+
+    .navbar-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .navbar-links a {
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      color: #64748b;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .navbar-links a:hover {
+      background: #f1f5f9;
+      color: #1e293b;
+    }
+
+    /* ===== 主內容區 ===== */
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 3.5rem;
+    }
+
+    /* 頁首標題與說明 */
+    .hero {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 0.35rem 1rem;
+      background: #fff;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      color: #64748b;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-desc {
+      max-width: 640px;
+      margin: 0 auto;
+      font-size: 1rem;
+      color: #64748b;
+    }
+
+    /* 區塊標題 */
+    .section-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 1rem;
+      padding-left: 0.5rem;
+      border-left: 3px solid #cbd5e1;
+    }
+
+    section {
+      margin-bottom: 2.75rem;
+    }
+
+    /* ===== 四大領域卡片（クリックで詳細ページへ） ===== */
+    .domain-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    /* カード全体をリンク化 */
+    .domain-card-link {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+      cursor: pointer;
+      border-radius: 16px;
+      transition: transform 0.2s;
+    }
+
+    .domain-card-link:hover {
+      transform: translateY(-3px);
+    }
+
+    .domain-card-link:focus-visible {
+      outline: 2px solid #64748b;
+      outline-offset: 4px;
+    }
+
+    .domain-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 1.25rem;
+      height: 100%;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      transition: box-shadow 0.2s;
+      cursor: pointer;
+    }
+
+    .domain-card-link:hover .domain-card {
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-cta {
+      display: inline-block;
+      margin-top: 0.75rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #64748b;
+    }
+
+    .domain-card-link:hover .card-cta {
+      color: #1e293b;
+    }
+
+    .domain-icon {
+      font-size: 1.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .domain-card h3 {
+      font-size: 1.05rem;
+      color: #1e293b;
+      margin-bottom: 0.35rem;
+    }
+
+    .domain-card p {
+      font-size: 0.88rem;
+      color: #64748b;
+    }
+
+    /* 領域色標（可在此修改各領域主色） */
+    .domain-card.politics { border-top: 3px solid #93c5fd; }
+    .domain-card.economy { border-top: 3px solid #86efac; }
+    .domain-card.history { border-top: 3px solid #fcd34d; }
+    .domain-card.culture { border-top: 3px solid #f9a8d4; }
+
+    /* ===== 關鍵字學習區 ===== */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    /* 圓角按鈕（篩選與顯示詳情共用樣式） */
+    .btn-round {
+      padding: 0.5rem 1.1rem;
+      border: none;
+      border-radius: 999px;
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      background: #fff;
+      color: #475569;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    .btn-round:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .btn-round.active {
+      background: #1e293b;
+      color: #fff;
+    }
+
+    .keyword-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .keyword-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 1.15rem 1.25rem;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    .keyword-card.hidden {
+      display: none;
+    }
+
+    .keyword-term {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #1e293b;
+      margin-bottom: 0.25rem;
+    }
+
+    .keyword-category {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      margin-bottom: 0.75rem;
+    }
+
+    .keyword-detail {
+      margin-top: 0.85rem;
+      padding-top: 0.85rem;
+      border-top: 1px dashed #e2e8f0;
+      font-size: 0.9rem;
+      display: none; /* 預設隱藏，按鈕後顯示 */
+    }
+
+    .keyword-detail.is-open {
+      display: block;
+    }
+
+    .detail-row {
+      margin-bottom: 0.5rem;
+    }
+
+    .detail-label {
+      font-weight: 600;
+      color: #64748b;
+      font-size: 0.8rem;
+      display: block;
+      margin-bottom: 0.15rem;
+    }
+
+    .detail-reading {
+      font-family: 'Noto Sans JP', sans-serif;
+      color: #0f766e;
+    }
+
+    .detail-example {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: #f8fafc;
+      padding: 0.6rem 0.75rem;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      color: #334155;
+      margin-top: 0.25rem;
+    }
+
+    .btn-reveal {
+      margin-top: 0.5rem;
+      background: #f1f5f9;
+      color: #334155;
+    }
+
+    .btn-reveal.is-open {
+      background: #e2e8f0;
+    }
+
+    /* ===== 迷你測驗 ===== */
+    .quiz-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    .quiz-question {
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .quiz-option {
+      text-align: left;
+      padding: 0.75rem 1rem;
+      width: 100%;
+    }
+
+    .quiz-option.correct {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .quiz-option.wrong {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .quiz-feedback {
+      font-size: 0.9rem;
+      min-height: 1.5rem;
+      color: #64748b;
+    }
+
+    .quiz-progress {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin-bottom: 1rem;
+    }
+
+    .quiz-actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .btn-primary {
+      background: #1e293b;
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: #334155;
+    }
+
+    /* 頁尾 */
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #94a3b8;
+      padding: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== 1. 上部導覽列 ===== -->
+  <nav class="navbar" aria-label="主要導覽">
+    <div class="navbar-inner">
+      <span class="navbar-brand">日文學習網站</span>
+      <div class="navbar-links">
+        <a href="#domains">四大領域</a>
+        <a href="#keywords">關鍵字</a>
+        <a href="#quiz">迷你測驗</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page">
+
+    <!-- ===== 2. 標題 ＋ 3. 說明文 ===== -->
+    <header class="hero">
+      <span class="hero-badge">階段四 · 研究期</span>
+      <h1>階段四：研究期｜深度日本</h1>
+      <p class="hero-desc">
+        透過政治、經濟、歷史、文化四大領域，深入理解當代日本社會的結構與變遷。
+        點選關鍵字卡片上的按鈕，即可查看讀音、中文意義與例句；完成區末迷你測驗，檢視學習成果。
+      </p>
+    </header>
+
+    <!-- ===== 4. 四大領域介紹卡片 ===== -->
+    <section id="domains" aria-labelledby="domains-heading">
+      <h2 class="section-title" id="domains-heading">四大學習領域</h2>
+      <div class="domain-grid">
+        <a href="politics.html" class="domain-card-link" aria-label="政治の詳しい学習ページへ">
+          <article class="domain-card politics">
+            <div class="domain-icon" aria-hidden="true">🏛️</div>
+            <h3>政治</h3>
+            <p>國會制度、政黨與憲法議題，理解日本民主政治的日常運作。</p>
+            <span class="card-cta">點擊進入學習 →</span>
+          </article>
+        </a>
+        <a href="economy.html" class="domain-card-link" aria-label="経済の詳しい学習ページへ">
+          <article class="domain-card economy">
+            <div class="domain-icon" aria-hidden="true">📈</div>
+            <h3>經濟</h3>
+            <p>泡沫經濟、雇用制度與人口結構，掌握戰後日本經濟的轉折。</p>
+            <span class="card-cta">點擊進入學習 →</span>
+          </article>
+        </a>
+        <a href="history.html" class="domain-card-link" aria-label="歴史の詳しい学習ページへ">
+          <article class="domain-card history">
+            <div class="domain-icon" aria-hidden="true">📜</div>
+            <h3>歷史</h3>
+            <p>從幕府到明治維新，再到高度成長，梳理日本現代化的關鍵節點。</p>
+            <span class="card-cta">點擊進入學習 →</span>
+          </article>
+        </a>
+        <a href="culture.html" class="domain-card-link" aria-label="文化の詳しい学習ページへ">
+          <article class="domain-card culture">
+            <div class="domain-icon" aria-hidden="true">🎭</div>
+            <h3>文化</h3>
+            <p>傳統藝能與美學思想，體會日本文化中的精神與生活樣式。</p>
+            <span class="card-cta">點擊進入學習 →</span>
+          </article>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===== 5. 關鍵字學習 ＋ 6. 按鈕顯示詳情 ===== -->
+    <section id="keywords" aria-labelledby="keywords-heading">
+      <h2 class="section-title" id="keywords-heading">關鍵字學習</h2>
+      <!-- 依領域篩選（全部／政治／經濟／歷史／文化） -->
+      <div class="filter-bar" role="tablist" aria-label="關鍵字分類篩選">
+        <button class="btn-round filter-btn active" data-filter="all" type="button">全部</button>
+        <button class="btn-round filter-btn" data-filter="politics" type="button">政治</button>
+        <button class="btn-round filter-btn" data-filter="economy" type="button">經濟</button>
+        <button class="btn-round filter-btn" data-filter="history" type="button">歷史</button>
+        <button class="btn-round filter-btn" data-filter="culture" type="button">文化</button>
+      </div>
+      <!-- 關鍵字卡片由 JavaScript 動態產生 -->
+      <div class="keyword-grid" id="keywordGrid"></div>
+    </section>
+
+    <!-- ===== 7. 迷你測驗 ===== -->
+    <section id="quiz" aria-labelledby="quiz-heading">
+      <h2 class="section-title" id="quiz-heading">迷你測驗</h2>
+      <div class="quiz-card">
+        <p class="quiz-progress" id="quizProgress">第 1 / 5 題</p>
+        <p class="quiz-question" id="quizQuestion"></p>
+        <div class="quiz-options" id="quizOptions"></div>
+        <p class="quiz-feedback" id="quizFeedback" aria-live="polite"></p>
+        <div class="quiz-actions">
+          <button class="btn-round btn-primary" id="quizNext" type="button" style="display: none;">下一題</button>
+          <button class="btn-round" id="quizRestart" type="button" style="display: none;">重新測驗</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    日文學習網站 · 階段四：研究期｜深度日本
+  </footer>
+
+  <script>
+    /* ============================================================
+       關鍵字資料庫（編輯時只需修改此陣列）
+       category: politics | economy | history | culture
+       ============================================================ */
+    const keywordsData = [
+      {
+        term: '憲法第九条',
+        category: 'politics',
+        categoryLabel: '政治',
+        reading: 'けんぽうだいきゅうじょう',
+        meaning: '日本憲法第九條，明文放棄戰爭、不保持戰力，是戰後和平憲法的核心條文。',
+        example: '憲法第九条は、戦争放棄と軍備不保持を定めています。'
+      },
+      {
+        term: '自民党',
+        category: 'politics',
+        categoryLabel: '政治',
+        reading: 'じみんとう',
+        meaning: '自由民主黨，日本長期執政的主要保守政黨。',
+        example: '自民党は、戦後長期にわたり政権の中心を担ってきました。'
+      },
+      {
+        term: '衆議院',
+        category: 'politics',
+        categoryLabel: '政治',
+        reading: 'しゅうぎいん',
+        meaning: '眾議院，日本國會下院，任期四年，在預算與內閣人事上權力較大。',
+        example: '衆議院選挙は、原則として四年ごとに行われます。'
+      },
+      {
+        term: '参議院',
+        category: 'politics',
+        categoryLabel: '政治',
+        reading: 'さんぎいん',
+        meaning: '參議院，日本國會上院，議員任期六年，每三年改選一半。',
+        example: '参議院は、衆議院とともに国会を構成します。'
+      },
+      {
+        term: 'バブル経済',
+        category: 'economy',
+        categoryLabel: '經濟',
+        reading: 'ばぶるけいざい',
+        meaning: '泡沫經濟，指一九八〇年代末資產價格急漲後崩盤的時期。',
+        example: 'バブル経済の崩壊は、一九九〇年代初頭に起きました。'
+      },
+      {
+        term: '失われた三十年',
+        category: 'economy',
+        categoryLabel: '經濟',
+        reading: 'うしなわれたさんじゅうねん',
+        meaning: '「失去的三十年」，形容泡沫破滅後經濟成長長期低迷的說法。',
+        example: '失われた三十年と、成長鈍化がよく議論されます。'
+      },
+      {
+        term: '終身雇用',
+        category: 'economy',
+        categoryLabel: '經濟',
+        reading: 'しゅうしんこよう',
+        meaning: '終身雇用，企業與員工長期穩定雇用的日本式雇用慣行。',
+        example: '終身雇用は、日本の大企業文化の象徴です。'
+      },
+      {
+        term: '少子高齢化',
+        category: 'economy',
+        categoryLabel: '經濟',
+        reading: 'しょうしこうれいか',
+        meaning: '少子化與高齡化並存，影響勞動力、社會保障與經濟活力。',
+        example: '少子高齢化は、社会保障制度に大きな課題をもたらします。'
+      },
+      {
+        term: '明治維新',
+        category: 'history',
+        categoryLabel: '歷史',
+        reading: 'めいじいしん',
+        meaning: '明治維新，一八六八年前後的政治改革，開啟日本近代化。',
+        example: '明治維新は、近代日本国家の出発点となりました。'
+      },
+      {
+        term: '黒船来航',
+        category: 'history',
+        categoryLabel: '歷史',
+        reading: 'こくせんらいこう',
+        meaning: '黑船來航，一八五三年佩里率艦隊抵日，衝擊鎖國體制。',
+        example: '黒船来航は、日本の開国への転換点でした。'
+      },
+      {
+        term: '江戸幕府',
+        category: 'history',
+        categoryLabel: '歷史',
+        reading: 'えどばくふ',
+        meaning: '江戶幕府，德川家康建立的武家政權，統治日本約兩百年半。',
+        example: '江戸幕府は、江戸を政治の中心としました。'
+      },
+      {
+        term: '高度経済成長',
+        category: 'history',
+        categoryLabel: '歷史',
+        reading: 'こうどけいざいせいちょう',
+        meaning: '高度經濟成長期，戰後一九五〇至七〇年代日本經濟快速擴張的時代。',
+        example: '高度経済成長の時代、日本のGDPは急伸しました。'
+      },
+      {
+        term: '歌舞伎',
+        category: 'culture',
+        categoryLabel: '文化',
+        reading: 'かぶき',
+        meaning: '歌舞伎，江戶時代發展的傳統戲劇，以華麗服裝與誇張表演聞名。',
+        example: '歌舞伎は、江戸の町文化から花開いた芸能です。'
+      },
+      {
+        term: '能',
+        category: 'culture',
+        categoryLabel: '文化',
+        reading: 'のう',
+        meaning: '能劇，結合謠、舞與面具的古典舞台藝術。',
+        example: '能は、静謐な動きと謡が特徴的な古典芸能です。'
+      },
+      {
+        term: '茶道',
+        category: 'culture',
+        categoryLabel: '文化',
+        reading: 'さどう（ちゃどう）',
+        meaning: '茶道，透過點茶與禮儀體現「和敬清寂」精神的日本文化實踐。',
+        example: '茶道では、「和敬清寂」の精神が大切にされます。'
+      },
+      {
+        term: '侘び寂び',
+        category: 'culture',
+        categoryLabel: '文化',
+        reading: 'わびさび',
+        meaning: '侘寂，在簡樸、留白與歲月痕跡中發現美的日本美學。',
+        example: '侘び寂びは、日本文化の美意識を表す言葉です。'
+      }
+    ];
+
+    /* ============================================================
+       迷你測驗題目（可自由增刪或修改）
+       ============================================================ */
+    const quizData = [
+      {
+        question: '「憲法第九条」主要與下列哪一項相關？',
+        options: ['戰爭放棄與軍備限制', '天皇繼承規定', '選舉權年齡'],
+        correct: 0,
+        explanation: '第九條規定放棄戰爭、不保持戰力，是戰後和平憲法的象徵。'
+      },
+      {
+        question: '「失われた三十年」通常用來描述什麼現象？',
+        options: ['戰後重建期', '泡沫後長期經濟低迷', '明治維新前的動盪'],
+        correct: 1,
+        explanation: '泡沫經濟崩潰後，日本經歷長期低成長，常被如此稱呼。'
+      },
+      {
+        question: '「黒船来航」發生在哪一時代背景？',
+        options: ['江戶幕府末期、鎖國衝擊', '高度經濟成長期', '平成泡沫期'],
+        correct: 0,
+        explanation: '一八五三年佩里艦隊抵日，成為日本開國的重要契機。'
+      },
+      {
+        question: '「終身雇用」主要屬於哪個領域的關鍵概念？',
+        options: ['政治', '經濟／勞動', '傳統藝能'],
+        correct: 1,
+        explanation: '終身雇用是日本企業雇用與勞動市場的重要特徵。'
+      },
+      {
+        question: '「侘び寂び」最能代表哪一領域的學習主題？',
+        options: ['國會制度', '泡沫經濟', '文化與美學'],
+        correct: 2,
+        explanation: '侘寂是理解日本傳統美學與生活哲學的核心詞彙。'
+      }
+    ];
+
+    /* ===== 產生關鍵字卡片 ===== */
+    const keywordGrid = document.getElementById('keywordGrid');
+
+    function renderKeywordCards() {
+      keywordGrid.innerHTML = '';
+      keywordsData.forEach((item, index) => {
+        const card = document.createElement('article');
+        card.className = 'keyword-card';
+        card.dataset.category = item.category;
+        card.innerHTML = `
+          <p class="keyword-term">${item.term}</p>
+          <p class="keyword-category">${item.categoryLabel}</p>
+          <button class="btn-round btn-reveal" type="button" aria-expanded="false" data-index="${index}">
+            顯示讀音・意義・例文
+          </button>
+          <div class="keyword-detail" id="detail-${index}">
+            <div class="detail-row">
+              <span class="detail-label">讀音</span>
+              <span class="detail-reading">${item.reading}</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">意義</span>
+              <span>${item.meaning}</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">例文</span>
+              <p class="detail-example">${item.example}</p>
+            </div>
+          </div>
+        `;
+        keywordGrid.appendChild(card);
+      });
+    }
+
+    /* ===== 6. 按鈕：切換顯示／隱藏詳情 ===== */
+    keywordGrid.addEventListener('click', (e) => {
+      const btn = e.target.closest('.btn-reveal');
+      if (!btn) return;
+
+      const index = btn.dataset.index;
+      const detail = document.getElementById(`detail-${index}`);
+      const isOpen = detail.classList.toggle('is-open');
+
+      btn.classList.toggle('is-open', isOpen);
+      btn.setAttribute('aria-expanded', isOpen);
+      btn.textContent = isOpen ? '隱藏詳情' : '顯示讀音・意義・例文';
+    });
+
+    /* ===== 領域篩選按鈕 ===== */
+    const filterBtns = document.querySelectorAll('.filter-btn');
+
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.keyword-card').forEach((card) => {
+          if (filter === 'all' || card.dataset.category === filter) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+
+    /* ===== 7. 迷你測驗邏輯 ===== */
+    let quizIndex = 0;
+    let quizScore = 0;
+    let quizAnswered = false;
+
+    const quizQuestion = document.getElementById('quizQuestion');
+    const quizOptions = document.getElementById('quizOptions');
+    const quizFeedback = document.getElementById('quizFeedback');
+    const quizProgress = document.getElementById('quizProgress');
+    const quizNext = document.getElementById('quizNext');
+    const quizRestart = document.getElementById('quizRestart');
+
+    function renderQuiz() {
+      const q = quizData[quizIndex];
+      quizAnswered = false;
+      quizProgress.textContent = `第 ${quizIndex + 1} / ${quizData.length} 題`;
+      quizQuestion.textContent = q.question;
+      quizFeedback.textContent = '';
+      quizNext.style.display = 'none';
+      quizRestart.style.display = 'none';
+
+      quizOptions.innerHTML = '';
+      q.options.forEach((opt, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'btn-round quiz-option';
+        btn.type = 'button';
+        btn.textContent = opt;
+        btn.dataset.index = i;
+        btn.addEventListener('click', () => handleQuizAnswer(btn, i));
+        quizOptions.appendChild(btn);
+      });
+    }
+
+    function handleQuizAnswer(btn, chosenIndex) {
+      if (quizAnswered) return;
+      quizAnswered = true;
+
+      const q = quizData[quizIndex];
+      const allBtns = quizOptions.querySelectorAll('.quiz-option');
+
+      allBtns.forEach((b) => (b.disabled = true));
+
+      if (chosenIndex === q.correct) {
+        btn.classList.add('correct');
+        quizScore++;
+        quizFeedback.textContent = '✓ 正確！' + q.explanation;
+      } else {
+        btn.classList.add('wrong');
+        allBtns[q.correct].classList.add('correct');
+        quizFeedback.textContent = '✗ 再想想看。' + q.explanation;
+      }
+
+      if (quizIndex < quizData.length - 1) {
+        quizNext.style.display = 'inline-block';
+      } else {
+        quizFeedback.textContent += ` 測驗結束，得分：${quizScore} / ${quizData.length}`;
+        quizRestart.style.display = 'inline-block';
+      }
+    }
+
+    quizNext.addEventListener('click', () => {
+      quizIndex++;
+      renderQuiz();
+    });
+
+    quizRestart.addEventListener('click', () => {
+      quizIndex = 0;
+      quizScore = 0;
+      renderQuiz();
+    });
+
+    /* ===== 頁面初始化 ===== */
+    renderKeywordCards();
+    renderQuiz();
+  </script>
+</body>
+</html>

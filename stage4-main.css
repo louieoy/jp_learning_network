@@ -1,0 +1,149 @@
+/* ============================================================
+   stage4-main.css
+   僅 stage4.html 主頁使用（關鍵字學習、迷你測驗）
+   ============================================================ */
+
+/* ===== 關鍵字學習區 ===== */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.keyword-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.keyword-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 1.15rem 1.25rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.keyword-card.hidden {
+  display: none;
+}
+
+.keyword-term {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #1e293b;
+  margin-bottom: 0.25rem;
+}
+
+.keyword-category {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin-bottom: 0.75rem;
+}
+
+.keyword-detail {
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+  border-top: 1px dashed #e2e8f0;
+  font-size: 0.9rem;
+  display: none;
+}
+
+.keyword-detail.is-open {
+  display: block;
+}
+
+.detail-row {
+  margin-bottom: 0.5rem;
+}
+
+.detail-label {
+  font-weight: 600;
+  color: #64748b;
+  font-size: 0.8rem;
+  display: block;
+  margin-bottom: 0.15rem;
+}
+
+.detail-reading {
+  font-family: 'Noto Sans JP', sans-serif;
+  color: #0f766e;
+}
+
+.detail-example {
+  font-family: 'Noto Sans JP', sans-serif;
+  background: #f8fafc;
+  padding: 0.6rem 0.75rem;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  color: #334155;
+  margin-top: 0.25rem;
+}
+
+.btn-reveal {
+  margin-top: 0.5rem;
+  background: #f1f5f9;
+  color: #334155;
+}
+
+.btn-reveal.is-open {
+  background: #e2e8f0;
+}
+
+/* ===== 迷你測驗 ===== */
+.quiz-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.quiz-question {
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.quiz-option {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  width: 100%;
+}
+
+.quiz-option.correct {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.quiz-option.wrong {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.quiz-feedback {
+  font-size: 0.9rem;
+  min-height: 1.5rem;
+  color: #64748b;
+}
+
+.quiz-progress {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin-bottom: 1rem;
+}
+
+.quiz-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}

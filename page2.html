@@ -1,0 +1,1751 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>階段二：起步期 | 基礎語法與生活情境</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter, Noto Sans JP & Noto Serif JP -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700;900&family=Noto+Serif+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Microsoft JhengHei"', '"Noto Sans JP"', 'Inter', 'sans-serif'],
+                        serif: ['"Noto Serif JP"', 'serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0effc',
+                            100: '#e1dffa',
+                            200: '#c3bef5',
+                            400: '#8c84eb',
+                            500: '#534AB7', // 主色調：靛紫
+                            600: '#433b9c',
+                        },
+                        navy: {
+                            50: '#f4f6f8',
+                            100: '#e9edf0',
+                            700: '#34495e',
+                            800: '#2c3e50', // 主色調：深海藍
+                            900: '#1b2631',
+                        },
+                        sakura: {
+                            50: '#fff5f6',
+                            100: '#ffebe2',
+                            200: '#ffd3db',
+                            400: '#fca5b7',
+                            500: '#f4728f',
+                            600: '#e14d6f',
+                        },
+                        wasabi: {
+                            50: '#f4fbf7',
+                            100: '#e6f7ef',
+                            600: '#10b981'
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out forwards',
+                        'float': 'float 4s ease-in-out infinite',
+                        'pulse-subtle': 'pulseSubtle 3s ease-in-out infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(2deg); }
+        }
+        @keyframes pulseSubtle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.95; transform: scale(0.99); }
+        }
+        /* Global CSS Overrides for requested palette & typography */
+        body {
+            font-family: "Microsoft JhengHei", "Noto Sans JP", "Inter", sans-serif !important;
+            background-color: #faf9f7 !important;
+            font-weight: 500 !important; /* 使基礎內文字體更粗、更飽滿 */
+        }
+        /* 全域加粗微調，確保所有段落與輸入框在展示時都清晰可見 */
+        p, span, select, button, input, textarea, div {
+            font-weight: 500;
+        }
+        /* 強調標題、強烈文字與導覽列的粗體質感 */
+        h1, h2, h3, h4, h5, h6, strong, b {
+            font-weight: 800 !important;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #faf9f7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c3bef5;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #534AB7;
+        }
+        .japanese-calligraphy {
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+        }
+        /* Ruby text adjustments for pristine typography */
+        ruby {
+            ruby-position: over;
+            ruby-align: center;
+        }
+        rt {
+            font-size: 0.58em;
+            letter-spacing: 0.05em;
+            color: #534AB7;
+            padding-bottom: 0.1em;
+            user-select: none;
+            font-weight: 700; /* 加粗漢字上方的平假名振假名，提升認讀清晰度 */
+        }
+    </style>
+</head>
+<body class="text-navy-800 font-sans min-h-screen relative overflow-x-hidden selection:bg-primary-100 selection:text-primary-600">
+
+    <!-- Custom Toast / Notification Center (Anti-Alert Rule) -->
+    <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- Header & Navigation Banner -->
+    <header class="sticky top-0 z-40 bg-[#faf9f7]/95 backdrop-blur-md border-b border-stone-200/60 py-4 px-6 transition-all shadow-sm">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary-500 to-navy-800 flex items-center justify-center text-white text-lg font-bold shadow-md shadow-primary-100 animate-float shrink-0">
+                    二
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-wider text-navy-850">階段二：起步期</h1>
+                    <p class="text-xs text-navy-700 tracking-tight font-medium">基礎語法與生活情境 ✦ 沉浸式體驗門戶</p>
+                </div>
+            </div>
+            
+            <!-- SPA Nav Bar Switches with Rounded-Full Buttons -->
+            <nav id="spa-nav-links" class="flex flex-wrap items-center justify-center gap-2 md:gap-3 text-sm font-medium">
+                <button onclick="switchTab('tab-home')" id="nav-tab-home" class="px-4 py-2 rounded-full transition-all duration-200 text-white bg-primary-500 border border-primary-600 font-semibold shadow-sm">
+                    <i class="fa-solid fa-home mr-1"></i> 探索首頁 & 寒暄
+                </button>
+                <button onclick="switchTab('tab-izakaya')" id="nav-tab-izakaya" class="px-4 py-2 rounded-full transition-all duration-200 text-navy-800 hover:text-primary-500 hover:bg-white border border-transparent hover:border-stone-200">
+                    <i class="fa-solid fa-beer-mug-empty mr-1"></i> 深夜食堂 & 助詞
+                </button>
+                <button onclick="switchTab('tab-intro')" id="nav-tab-intro" class="px-4 py-2 rounded-full transition-all duration-200 text-navy-800 hover:text-primary-500 hover:bg-white border border-transparent hover:border-stone-200">
+                    <i class="fa-solid fa-id-card mr-1"></i> 自我介紹名片
+                </button>
+                <button onclick="switchTab('tab-map')" id="nav-tab-map" class="px-4 py-2 rounded-full transition-all duration-200 text-navy-800 hover:text-primary-500 hover:bg-white border border-transparent hover:border-stone-200">
+                    <i class="fa-solid fa-map-location-dot mr-1"></i> 空間問路
+                </button>
+                <button onclick="switchTab('tab-matsuri')" id="nav-tab-matsuri" class="px-4 py-2 rounded-full transition-all duration-200 text-navy-800 hover:text-primary-500 hover:bg-white border border-transparent hover:border-stone-200">
+                    <i class="fa-solid fa-calendar-days mr-1"></i> 節慶與祭典
+                </button>
+            </nav>
+
+            <div class="flex items-center gap-2">
+                <button onclick="switchTab('tab-ai')" class="bg-[#534AB7] hover:bg-[#433b9c] text-white text-xs font-semibold px-5 py-2.5 rounded-full shadow-lg shadow-primary-200 hover:scale-105 transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-sparkles animate-pulse text-amber-300"></i> AI 語音與文化教練
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 md:px-8 py-8 relative z-20">
+        
+        <!-- PAGE 1: HOME & AISATSU (探索首頁 & 寒暄) -->
+        <section id="tab-home" class="spa-view animate-fade-in">
+            <!-- Milestone Section 0: Aisatsu (常用生活寒暄語) with pure white (#ffffff) cards and 16px custom rounding -->
+            <div class="bg-white border border-stone-200/60 rounded-[16px] p-6 md:p-10 shadow-sm">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+                    <div>
+                        <span class="text-xs font-bold tracking-wider text-primary-500 uppercase">MILESTONE 00</span>
+                        <h3 class="text-2xl font-serif font-extrabold text-navy-800 flex items-center gap-2 mt-1">
+                            常用生活寒暄語 <span class="font-normal text-sm text-stone-500 font-sans">（あいさつ）</span>
+                        </h3>
+                        <p class="text-xs text-stone-500 mt-1 font-medium">萬事起頭難？現學現用，12個最地道的常用句型，建立最溫暖的日語生活感。</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs bg-navy-50 border border-stone-200/50 px-4 py-1.5 rounded-full text-navy-800 font-medium"><i class="fa-solid fa-headphones mr-1 text-primary-500"></i> 點擊卡片可高音質發音（搭載振假名標示）</span>
+                    </div>
+                </div>
+
+                <!-- Grid of Cards: Categorized and expanded with Ruby tags -->
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <!-- Card 1: 早安 -->
+                    <div onclick="playSampleVoice('おはようございます', 'Leda')" class="group cursor-pointer bg-white hover:bg-primary-50 hover:border-primary-300 border border-stone-200 rounded-[16px] p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+                        <div class="absolute -right-3 -bottom-3 text-stone-100/80 text-6xl group-hover:text-primary-100/50 transition-colors font-serif">朝</div>
+                        <span class="text-[10px] font-bold tracking-wider text-amber-600 bg-amber-50 px-2.5 py-0.5 rounded-full">晨間問候</span>
+                        <h4 class="text-lg font-bold text-navy-800 mt-2 truncate">おはようございます</h4>
+                        <p class="text-[10px] text-stone-450 font-sans tracking-wide">o-ha-yo-u-go-za-i-ma-su</p>
+                        <div class="text-xs font-medium text-navy-700 mt-4 border-t border-stone-100 pt-2 flex justify-between items-center">
+                            <span class="truncate">早安 (禮貌/正式)</span>
+                            <span class="w-6 h-6 bg-stone-50 group-hover:bg-primary-500 group-hover:text-white rounded-full flex items-center justify-center text-stone-400 transition-colors text-xs shrink-0"><i class="fa-solid fa-volume-high scale-90"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: 白天你好 -->
+                    <div onclick="playSampleVoice('こんにちは', 'Leda')" class="group cursor-pointer bg-white hover:bg-primary-50 hover:border-primary-300 border border-stone-200 rounded-[16px] p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+                        <div class="absolute -right-3 -bottom-3 text-stone-100/80 text-6xl group-hover:text-primary-100/50 transition-colors font-serif">日</div>
+                        <span class="text-[10px] font-bold tracking-wider text-primary-500 bg-primary-50 px-2.5 py-0.5 rounded-full">白天問候</span>
+                        <h4 class="text-lg font-bold text-navy-800 mt-2 truncate">こんにちは</h4>
+                        <p class="text-[10px] text-stone-450 font-sans tracking-wide">ko-n-ni-chi-wa</p>
+                        <div class="text-xs font-medium text-navy-700 mt-4 border-t border-stone-100 pt-2 flex justify-between items-center">
+                            <span class="truncate">你好 (10:00 - 黃昏)</span>
+                            <span class="w-6 h-6 bg-stone-50 group-hover:bg-primary-500 group-hover:text-white rounded-full flex items-center justify-center text-stone-400 transition-colors text-xs shrink-0"><i class="fa-solid fa-volume-high scale-90"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: 晚上好 -->
+                    <div onclick="playSampleVoice('こんばんは', 'Leda')" class="group cursor-pointer bg-white hover:bg-primary-50 hover:border-primary-300 border border-stone-200 rounded-[16px] p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+                        <div class="absolute -right-3 -bottom-3 text-stone-100/80 text-6xl group-hover:text-primary-100/50 transition-colors font-serif">夜</div>
+                        <span class="text-[10px] font-bold tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-0.5 rounded-full">夜間問候</span>
+                        <h4 class="text-lg font-bold text-navy-800 mt-2 truncate">こんばんは</h4>
+                        <p class="text-[10px] text-stone-450 font-sans tracking-wide">ko-n-ba-n-wa</p>
+                        <div class="text-xs font-medium text-navy-700 mt-4 border-t border-stone-100 pt-2 flex justify-between items-center">
+                            <span class="truncate">晚上好 (黃昏之後)</span>
+                            <span class="w-6 h-6 bg-stone-50 group-hover:bg-primary-500 group-hover:text-white rounded-full flex items-center justify-center text-stone-400 transition-colors text-xs shrink-0"><i class="fa-solid fa-volume-high scale-90"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: 晚安 -->
+                    <div onclick="playSampleVoice('おやすみなさい', 'Leda')" class="group cursor-pointer bg-white hover:bg-primary-50 hover:border-primary-300 border border-stone-200 rounded-[16px] p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+                        <div class="absolute -right-3 -bottom-3 text-stone-100/80 text-6xl group-hover:text-primary-100/50 transition-colors font-serif">眠</div>
+                        <span class="text-[10px] font-bold tracking-wider text-purple-600 bg-purple-50 px-2.5 py-0.5 rounded-full">睡眠道別</span>
+                        <h4 class="text-lg font-bold text-navy-800 mt-2 truncate">おやすみなさい</h4>
+                        <p class="text-[10px] text-stone-450 font-sans tracking-wide">o-ya-su-mi-na-sa-i</p>
+                        <div class="text-xs font-medium text-navy-700 mt-4 border-t border-stone-100 pt-2 flex justify-between items-center">
+                            <span class="truncate">晚安 (禮貌/正式)</span>
+                            <span class="w-6 h-6 bg-stone-50 group-hover:bg-primary-500 group-hover:text-white rounded-full flex items-center justify-center text-stone-400 transition-colors text-xs shrink-0"><i class="fa-solid fa-volume-high scale-90"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Card 5: 謝謝 -->
+                    <div onclick="playSampleVoice('ありがとう', 'Leda')" class="group cursor-pointer bg-white hover:bg-primary-50 hover:border-primary-300 border border-stone-200 rounded-[16px] p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+                        <div class="absolute -right-3 -bottom-3 text-stone-100/80 text-6xl group-hover:text-primary-100/50 transition-colors font-serif">謝</div>
+                        <span class="text-[10px] font-bold tracking-wider text-emerald-600 bg-emerald-50 px-2.5 py-0.5 rounded-full">表達敬意</span>
+                        <h4 class="text-lg font-bold text-navy-800 mt-2 truncate">ありがとう</h4>
+                        <p class="text-[10px] text-stone-450 font-sans tracking-wide">a-ri-ga-to-u</p>
+                        <div class="text-xs font-medium text-navy-700 mt-4 border-t border-stone-100 pt-2 flex justify-between items-center">
+                            <span class="truncate">謝謝 (日常 / 禮貌)</span>
+                            <span class="w-6 h-6 bg-stone-50 group-hover:bg-primary-500 group-hover:text-white rounded-full flex items-center justify-center text-stone-400 transition-colors text-xs shrink-0"><i class="fa-solid fa-volume-high scale-90"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Card 6: 抱歉/請問 -->
+                    <div onclick="playSampleVoice('すみません', 'Leda')" class="group cursor-pointer bg-white hover:bg-primary-50 hover:border-primary-300 border border-stone-200 rounded-[16px] p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+                        <div class="absolute -right-3 -bottom-3 text-stone-100/80 text-6xl group-hover:text-primary-100/50 transition-colors font-serif">歉</div>
+                        <span class="text-[10px] font-bold tracking-wider text-rose-600 bg-rose-50 px-2.5 py-0.5 rounded-full">萬用致意</span>
+                        <h4 class="text-lg font-bold text-navy-800 mt-2 truncate">すみません</h4>
+                        <p class="text-[10px] text-stone-450 font-sans tracking-wide">su-mi-ma-se-n</p>
+                        <div class="text-xs font-medium text-navy-700 mt-4 border-t border-stone-100 pt-2 flex justify-between items-center">
+                            <span class="truncate">不好意思 / 抱歉 / 謝謝</span>
+                            <span class="w-6 h-6 bg-stone-50 group-hover:bg-primary-500 group-hover:text-white rounded-full flex items-center justify-center text-stone-400 transition-colors text-xs shrink-0"><i class="fa-solid fa-volume-high scale-90"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Card 7: 我要開動了 -->
+                    <div onclick="playSampleVoice('いただきます', 'Leda')" class="group cursor-pointer bg-white hover:bg-primary-50 hover:border-primary-300 border border-stone-200 rounded-[16px] p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+                        <div class="absolute -right-3 -bottom-3 text-stone-100/80 text-6xl group-hover:text-primary-100/50 transition-colors font-serif">食</div>
+                        <span class="text-[10px] font-bold tracking-wider text-amber-500 bg-amber-50 px-2.5 py-0.5 rounded-full">餐前感恩</span>
+                        <h4 class="text-lg font-bold text-navy-800 mt-2 truncate">いただきます</h4>
+                        <p class="text-[10px] text-stone-450 font-sans tracking-wide">i-ta-da-ki-ma-su</p>
+                        <div class="text-xs font-medium text-navy-700 mt-4 border-t border-stone-100 pt-2 flex justify-between items-center">
+                            <span class="truncate">我要開動了 (感恩恩賜)</span>
+                            <span class="w-6 h-6 bg-stone-50 group-hover:bg-primary-500 group-hover:text-white rounded-full flex items-center justify-center text-stone-400 transition-colors text-xs shrink-0"><i class="fa-solid fa-volume-high scale-90"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Card 8: 多謝款待 -->
+                    <div onclick="playSampleVoice('ごちそうさまでした', 'Leda')" class="group cursor-pointer bg-white hover:bg-primary-50 hover:border-primary-300 border border-stone-200 rounded-[16px] p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+                        <div class="absolute -right-3 -bottom-3 text-stone-100/80 text-6xl group-hover:text-primary-100/50 transition-colors font-serif">飽</div>
+                        <span class="text-[10px] font-bold tracking-wider text-orange-600 bg-orange-50 px-2.5 py-0.5 rounded-full">餐後滿足</span>
+                        <h4 class="text-lg font-bold text-navy-800 mt-2 truncate">ごちそうさまでした</h4>
+                        <p class="text-[10px] text-stone-450 font-sans tracking-wide">go-chi-so-u-sa-ma-de-shi-ta</p>
+                        <div class="text-xs font-medium text-navy-700 mt-4 border-t border-stone-100 pt-2 flex justify-between items-center">
+                            <span class="truncate">多謝款待 (禮貌/正式)</span>
+                            <span class="w-6 h-6 bg-stone-50 group-hover:bg-primary-500 group-hover:text-white rounded-full flex items-center justify-center text-stone-400 transition-colors text-xs shrink-0"><i class="fa-solid fa-volume-high scale-90"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Card 9: 辛苦了 -->
+                    <div onclick="playSampleVoice('お疲れ様です', 'Leda')" class="group cursor-pointer bg-white hover:bg-primary-50 hover:border-primary-300 border border-stone-200 rounded-[16px] p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+                        <div class="absolute -right-3 -bottom-3 text-stone-100/80 text-6xl group-hover:text-primary-100/50 transition-colors font-serif">勞</div>
+                        <span class="text-[10px] font-bold tracking-wider text-cyan-600 bg-cyan-50 px-2.5 py-0.5 rounded-full">職場致意</span>
+                        <h4 class="text-lg font-bold text-navy-800 mt-2 truncate">お<ruby>疲<rt>つか</rt></ruby>れ<ruby>様<rt>さま</rt></ruby>です</h4>
+                        <p class="text-[10px] text-stone-450 font-sans tracking-wide">o-tsu-ka-re-sa-ma-de-su</p>
+                        <div class="text-xs font-medium text-navy-700 mt-4 border-t border-stone-100 pt-2 flex justify-between items-center">
+                            <span class="truncate">辛苦了 (日常/職場萬用)</span>
+                            <span class="w-6 h-6 bg-stone-50 group-hover:bg-primary-500 group-hover:text-white rounded-full flex items-center justify-center text-stone-400 transition-colors text-xs shrink-0"><i class="fa-solid fa-volume-high scale-90"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Card 10: 我出門了 -->
+                    <div onclick="playSampleVoice('行ってきます', 'Leda')" class="group cursor-pointer bg-white hover:bg-primary-50 hover:border-primary-300 border border-stone-200 rounded-[16px] p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+                        <div class="absolute -right-3 -bottom-3 text-stone-100/80 text-6xl group-hover:text-primary-100/50 transition-colors font-serif">行</div>
+                        <span class="text-[10px] font-bold tracking-wider text-sky-600 bg-sky-50 px-2.5 py-0.5 rounded-full">出門招呼</span>
+                        <h4 class="text-lg font-bold text-navy-800 mt-2 truncate"><ruby>行<rt>い</rt></ruby>ってきます</h4>
+                        <p class="text-[10px] text-stone-450 font-sans tracking-wide">i-tte-ki-ma-su</p>
+                        <div class="text-xs font-medium text-navy-700 mt-4 border-t border-stone-100 pt-2 flex justify-between items-center">
+                            <span class="truncate">我出門了 (對家人/室友)</span>
+                            <span class="w-6 h-6 bg-stone-50 group-hover:bg-primary-500 group-hover:text-white rounded-full flex items-center justify-center text-stone-400 transition-colors text-xs shrink-0"><i class="fa-solid fa-volume-high scale-90"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Card 11: 我回來了 -->
+                    <div onclick="playSampleVoice('ただいま', 'Leda')" class="group cursor-pointer bg-white hover:bg-primary-50 hover:border-primary-300 border border-stone-200 rounded-[16px] p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+                        <div class="absolute -right-3 -bottom-3 text-stone-100/80 text-6xl group-hover:text-primary-100/50 transition-colors font-serif">歸</div>
+                        <span class="text-[10px] font-bold tracking-wider text-teal-600 bg-teal-50 px-2.5 py-0.5 rounded-full">回家招呼</span>
+                        <h4 class="text-lg font-bold text-navy-800 mt-2 truncate">ただいま</h4>
+                        <p class="text-[10px] text-stone-450 font-sans tracking-wide">ta-da-i-ma</p>
+                        <div class="text-xs font-medium text-navy-700 mt-4 border-t border-stone-100 pt-2 flex justify-between items-center">
+                            <span class="truncate">我回來了 (回到歸屬)</span>
+                            <span class="w-6 h-6 bg-stone-50 group-hover:bg-primary-500 group-hover:text-white rounded-full flex items-center justify-center text-stone-400 transition-colors text-xs shrink-0"><i class="fa-solid fa-volume-high scale-90"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Card 12: 你好嗎？ -->
+                    <div onclick="playSampleVoice('お元気ですか', 'Leda')" class="group cursor-pointer bg-white hover:bg-primary-50 hover:border-primary-300 border border-stone-200 rounded-[16px] p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+                        <div class="absolute -right-3 -bottom-3 text-stone-100/80 text-6xl group-hover:text-primary-100/50 transition-colors font-serif">健</div>
+                        <span class="text-[10px] font-bold tracking-wider text-pink-600 bg-pink-50 px-2.5 py-0.5 rounded-full">溫暖問候</span>
+                        <h4 class="text-lg font-bold text-navy-800 mt-2 truncate">お<ruby>元<rt>げん</rt></ruby><ruby>気<rt>き</rt></ruby>ですか</h4>
+                        <p class="text-[10px] text-stone-450 font-sans tracking-wide">o-ge-n-ki-de-su-ka</p>
+                        <div class="text-xs font-medium text-navy-700 mt-4 border-t border-stone-100 pt-2 flex justify-between items-center">
+                            <span class="truncate">您身體好嗎？ (關心近況)</span>
+                            <span class="w-6 h-6 bg-stone-50 group-hover:bg-primary-500 group-hover:text-white rounded-full flex items-center justify-center text-stone-400 transition-colors text-xs shrink-0"><i class="fa-solid fa-volume-high scale-90"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 2: IZAKAYA & PARTICLES (深夜食堂與助詞試煉) -->
+        <section id="tab-izakaya" class="spa-view hidden animate-fade-in">
+            <div class="bg-gradient-to-br from-[#1E2022] to-[#121314] text-stone-100 rounded-[16px] p-6 md:p-10 shadow-xl relative overflow-hidden">
+                <!-- Neon background blur -->
+                <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-primary-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+                
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4 pb-6 border-b border-stone-800">
+                    <div>
+                        <span class="text-xs font-bold tracking-widest text-primary-400">MILESTONE 01 ✦ 沉浸式情境</span>
+                        <h3 class="text-2xl font-serif font-extrabold text-white flex items-center gap-2 mt-1">
+                            深夜食堂：居酒屋與助詞試煉 <span class="font-normal text-sm text-stone-400 font-sans">（居酒屋の助詞）</span>
+                        </h3>
+                        <p class="text-stone-300 text-sm mt-1 font-medium">
+                            居酒屋點餐常識：第一杯先點「生啤酒」！透過點餐互動，征服初學者最容易卡關的 7 大助詞：<strong>は、が、を、に、де、へ、與 と</strong>。
+                        </p>
+                    </div>
+                    <!-- Mini Score Tracker & Quest Selector -->
+                    <div class="flex flex-col gap-2 items-end shrink-0">
+                        <div class="bg-stone-800/80 border border-stone-700/50 px-4 py-2 rounded-full flex items-center gap-3">
+                            <span class="text-xs font-bold text-stone-400">點餐挑戰度</span>
+                            <div class="flex gap-1" id="stars-container">
+                                <i class="fa-solid fa-star text-primary-400 text-xs"></i>
+                                <i class="fa-solid fa-star text-primary-400 text-xs"></i>
+                                <i class="fa-solid fa-star text-primary-400 text-xs"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quest Quick Selector Tabs with circular pill shapes -->
+                <div class="mb-6">
+                    <span class="text-xs font-bold text-stone-400 block mb-2 uppercase tracking-widest">情境關卡選單 (點擊切換題目)</span>
+                    <div class="flex flex-wrap gap-2" id="quest-tabs-container">
+                        <!-- Tabs will be rendered here dynamically -->
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-10">
+                    
+                    <!-- Left: Question & Ordering Area -->
+                    <div class="lg:col-span-7 flex flex-col gap-6">
+                        <div class="bg-stone-900/80 border border-stone-800 p-6 rounded-[16px] relative">
+                            <!-- Red Lantern Accent -->
+                            <div class="absolute right-4 top-4 w-6 h-8 bg-red-600 rounded-md border border-red-500 shadow-md flex items-center justify-center text-[10px] font-serif font-bold text-white leading-none text-center">
+                                生<br>ビ
+                            </div>
+                            
+                            <span class="text-xs font-semibold text-primary-400 uppercase tracking-widest" id="game-quest-title">載入中...</span>
+                            <h4 class="text-lg font-serif font-bold text-stone-100 mt-2" id="game-quest-cn">載入中...</h4>
+                            
+                            <!-- Dynamic Sentence Build Area -->
+                            <div id="sentence-builder-container" class="mt-6 p-4 bg-[#151618] border border-stone-800 rounded-[14px] flex flex-wrap items-center gap-x-2 gap-y-4 text-lg md:text-xl font-medium tracking-wide">
+                                <!-- Dynamic word segments & input slots go here -->
+                            </div>
+
+                            <!-- Mini guide explaining placeholders -->
+                            <p class="text-[11px] text-stone-500 mt-2 flex items-center gap-1">
+                                <i class="fa-solid fa-info-circle text-primary-400"></i> 提示：點擊下方的助詞字卡填入空格。點擊空格即可清除重新填寫。
+                            </p>
+                        </div>
+
+                        <!-- Drag elements (Button styled for touch & mouse click) -->
+                        <div class="flex flex-col gap-3">
+                            <span class="text-xs font-bold text-stone-400">可用助詞字卡：</span>
+                            <div class="flex flex-wrap gap-2">
+                                <button onclick="selectParticle('は')" class="w-12 h-12 bg-stone-800 hover:bg-primary-500 hover:text-white font-serif font-bold text-lg rounded-full border border-stone-700 transition-all hover:scale-105 flex items-center justify-center">は</button>
+                                <button onclick="selectParticle('が')" class="w-12 h-12 bg-stone-800 hover:bg-primary-50 hover:text-white font-serif font-bold text-lg rounded-full border border-stone-700 transition-all hover:scale-105 flex items-center justify-center">が</button>
+                                <button onclick="selectParticle('を')" class="w-12 h-12 bg-stone-800 hover:bg-primary-50 hover:text-white font-serif font-bold text-lg rounded-full border border-stone-700 transition-all hover:scale-105 flex items-center justify-center">を</button>
+                                <button onclick="selectParticle('に')" class="w-12 h-12 bg-stone-800 hover:bg-primary-50 hover:text-white font-serif font-bold text-lg rounded-full border border-stone-700 transition-all hover:scale-105 flex items-center justify-center">に</button>
+                                <button onclick="selectParticle('で')" class="w-12 h-12 bg-stone-800 hover:bg-primary-50 hover:text-white font-serif font-bold text-lg rounded-full border border-stone-700 transition-all hover:scale-105 flex items-center justify-center">で</button>
+                                <button onclick="selectParticle('へ')" class="w-12 h-12 bg-stone-800 hover:bg-primary-50 hover:text-white font-serif font-bold text-lg rounded-full border border-stone-700 transition-all hover:scale-105 flex items-center justify-center">へ</button>
+                                <button onclick="selectParticle('と')" class="w-12 h-12 bg-stone-800 hover:bg-primary-50 hover:text-white font-serif font-bold text-lg rounded-full border border-stone-700 transition-all hover:scale-105 flex items-center justify-center">と</button>
+                            </div>
+                        </div>
+
+                        <!-- Submission controller with rounded-full shapes -->
+                        <div class="flex gap-3 justify-end mt-2">
+                            <button onclick="resetQuest()" class="px-6 py-3 bg-stone-900 hover:bg-stone-800 text-stone-300 rounded-full border border-stone-800 text-xs font-semibold transition-colors">重新作答</button>
+                            <button onclick="checkParticles()" class="px-7 py-3 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-400 hover:to-primary-500 text-white font-bold rounded-full text-xs transition-transform hover:scale-102 flex items-center gap-1.5">確認拼圖 <i class="fa-solid fa-circle-check text-white"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Right: Visual Izakaya Lantern and Etiquette Explainer -->
+                    <div class="lg:col-span-5 flex flex-col gap-4 w-full">
+                        <div class="bg-gradient-to-b from-stone-900 to-stone-950 border border-stone-800 p-6 rounded-[16px] flex flex-col gap-4 relative">
+                            <h4 class="font-serif font-bold text-primary-400 flex items-center gap-2 border-b border-stone-800 pb-2"><i class="fa-solid fa-beer-mug-empty animate-float"></i> 深夜居酒屋文化轉譯</h4>
+                            
+                            <!-- Mini culture card dynamically updated based on completion -->
+                            <div id="culture-card-content" class="text-stone-300 text-xs leading-relaxed flex flex-col gap-3">
+                                <p class="font-bold text-stone-100 text-sm">🍺 經典起手式：とりあえず生 (tori-a-e-zu-nama)</p>
+                                <p>
+                                    在日本的居酒屋，坐下後第一件事不是看菜單，而是禮貌地說「とりあえず生」，意思是「總之先來杯生啤酒吧！」。
+                                </p>
+                                <p class="text-stone-400">
+                                    這是為了讓店家能以最快速度上酒，大家才能同步乾杯 (乾杯 / Ka-n-pa-i)，展現合群且注重社交效率的日本和諧文化。
+                                </p>
+                            </div>
+
+                            <!-- Interactive Menu Item Preview with fully circular buttons -->
+                            <div class="p-4 bg-stone-950 border border-stone-800 rounded-[14px] mt-2">
+                                <span class="text-[10px] text-primary-400 font-bold uppercase tracking-wider block mb-2">居酒屋推薦菜單點擊發音：</span>
+                                <div class="grid grid-cols-2 gap-2 text-xs">
+                                    <button onclick="playSampleVoice('生ビール、お願いします', 'Kore')" class="bg-stone-900 hover:bg-stone-850 border border-stone-800 rounded-full p-2.5 px-4 text-left flex justify-between items-center group transition-all">
+                                        <span>生ビール (生啤)</span>
+                                        <i class="fa-solid fa-volume-high text-stone-600 group-hover:text-primary-400 font-semibold"></i>
+                                    </button>
+                                    <button onclick="playSampleVoice('焼き鳥、お願いします', 'Kore')" class="bg-stone-900 hover:bg-stone-850 border border-stone-800 rounded-full p-2.5 px-4 text-left flex justify-between items-center group transition-all">
+                                        <span>焼き鳥 (烤雞串)</span>
+                                        <i class="fa-solid fa-volume-high text-stone-600 group-hover:text-primary-400 font-semibold"></i>
+                                    </button>
+                                    <button onclick="playSampleVoice('お会計、お願いします', 'Kore')" class="bg-stone-900 hover:bg-stone-850 border border-stone-800 rounded-full p-2.5 px-4 text-left flex justify-between items-center group transition-all">
+                                        <span>お会計 (買單)</span>
+                                        <i class="fa-solid fa-volume-high text-stone-600 group-hover:text-primary-400 font-semibold"></i>
+                                    </button>
+                                    <button onclick="playSampleVoice('お水、お願いします', 'Kore')" class="bg-stone-900 hover:bg-stone-850 border border-stone-800 rounded-full p-2.5 px-4 text-left flex justify-between items-center group transition-all">
+                                        <span>お水 (免費水)</span>
+                                        <i class="fa-solid fa-volume-high text-stone-600 group-hover:text-primary-400 font-semibold"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Particle Guide & Cheat Sheet (助詞奧義書) -->
+                <div class="mt-8 border-t border-stone-800 pt-8">
+                    <div class="flex items-center gap-2 mb-6">
+                        <span class="w-1.5 h-6 bg-primary-500 rounded-full"></span>
+                        <h4 class="text-lg font-serif font-bold text-white tracking-wider">助詞奧義書：七大核心助詞功能與應用解碼器</h4>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                        <!-- Left: Interactive Selectors -->
+                        <div class="md:col-span-5 flex flex-col gap-2.5">
+                            <span class="text-xs text-stone-400 font-bold uppercase tracking-wider block mb-1">選擇助詞進行功能拆解：</span>
+                            <div class="grid grid-cols-4 gap-2" id="particle-guide-tabs">
+                                <!-- Dynamically populated buttons -->
+                            </div>
+                            <div class="bg-stone-900/40 border border-stone-800/80 rounded-[14px] p-4 mt-2">
+                                <span class="text-[11px] text-primary-400 font-bold block mb-1"><i class="fa-solid fa-graduation-cap"></i> 展演提問焦點提示</span>
+                                <p class="text-[10px] text-stone-400 leading-relaxed">
+                                    評審通常會關注初學者如何區分「共同伴隨」的 <strong>と</strong> 與其他助詞的作用。您可以點擊對應按鈕來展現學術設計的專業性。
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Right: Dynamic Detailed Explainer Card with pure white background -->
+                        <div class="md:col-span-7 bg-[#151618] border border-stone-800 rounded-[16px] p-5 md:p-6 transition-all duration-300 min-h-[220px]" id="particle-guide-details">
+                            <!-- Default empty state or dynamic text populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 3: SELF-INTRO (自我介紹名片) -->
+        <section id="tab-intro" class="spa-view hidden animate-fade-in">
+            <div class="bg-white border border-stone-200/60 rounded-[16px] p-6 md:p-10 shadow-sm relative overflow-hidden">
+                <div class="absolute right-0 top-0 w-40 h-40 bg-primary-50/40 rounded-full blur-3xl pointer-events-none"></div>
+                
+                <div class="mb-8">
+                    <span class="text-xs font-bold tracking-wider text-primary-500 uppercase">MILESTONE 02</span>
+                    <h3 class="text-2xl font-serif font-extrabold text-navy-800 flex items-center gap-2 mt-1">
+                        春櫻下的自我介紹 <span class="font-normal text-sm text-stone-500 font-sans">（自己紹介 ＆ お花見）</span>
+                    </h3>
+                    <p class="text-navy-700 text-sm mt-1 max-w-2xl font-medium">
+                        在學會基礎助詞與句子架構後，在盛開的櫻花樹下與新朋友初次見面。利用系統動態編譯專屬你的自我介紹日文字句，打造極具質感的「御朱印風格」社交名片！
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    
+                    <!-- Left Column: Inputs Form - pure white with 16px corners -->
+                    <div class="lg:col-span-5 bg-white border border-stone-200 p-6 rounded-[16px] flex flex-col gap-5 shadow-sm">
+                        <h4 class="font-serif font-bold text-navy-800 border-b border-stone-200 pb-2"><i class="fa-solid fa-pen-nib text-primary-500 mr-2"></i>名片填寫資料</h4>
+                        
+                        <div>
+                            <label class="block text-xs font-bold text-navy-700 uppercase mb-2">你的中文名字 (或英文)</label>
+                            <input type="text" id="intro-name" value="櫻花" oninput="compileSelfIntro()" class="w-full bg-navy-50 border border-stone-200 rounded-full px-4 py-2.5 text-sm focus:outline-none focus:border-primary-400 focus:bg-white transition-all">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-navy-700 uppercase mb-2">你的職業 / 身分</label>
+                            <input type="text" id="intro-job" value="學生" oninput="compileSelfIntro()" placeholder="例如：學生、工程師、教師" class="w-full bg-navy-50 border border-stone-200 rounded-full px-4 py-2.5 text-sm focus:outline-none focus:border-primary-400 focus:bg-white transition-all">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-navy-700 uppercase mb-2">你的愛好 / 興趣</label>
+                            <input type="text" id="intro-hobby" value="旅行" oninput="compileSelfIntro()" placeholder="例如：旅行、聽音樂、看動漫" class="w-full bg-navy-50 border border-stone-200 rounded-full px-4 py-2.5 text-sm focus:outline-none focus:border-primary-400 focus:bg-white transition-all">
+                        </div>
+
+                        <!-- AI Smart Translate Button -->
+                        <button id="ai-card-translate-btn" onclick="aiTranslateCard()" class="w-full bg-gradient-to-r from-primary-500 to-navy-800 text-white font-bold text-xs py-3.5 px-6 rounded-full shadow-lg shadow-primary-100 hover:scale-102 transition-transform flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-sparkles animate-pulse text-amber-300"></i> 一鍵 AI 智能日文翻譯與美化
+                        </button>
+
+                        <div class="bg-primary-50/40 border border-primary-100 p-4 rounded-[14px]">
+                            <h5 class="text-xs font-bold text-primary-600 flex items-center gap-1 mb-1"><i class="fa-solid fa-circle-info"></i> 春季賞櫻文化小知識 (お花見)</h5>
+                            <p class="text-[11px] text-stone-500 leading-relaxed font-medium">
+                                初次與日本人見面，特別是在賞櫻等聚會場合，保持優雅與誠懇。結尾必定會說一份極具謙遜感和懇求的「どうぞよろしくお願いします」（請多多指教）。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Card Visual Output -->
+                    <div class="lg:col-span-7 flex flex-col items-center gap-4 w-full">
+                        
+                        <!-- Calligraphy Card View - pure white background with 16px corners -->
+                        <div id="self-intro-card" class="w-full max-w-md aspect-[1.618/1] bg-white border-2 border-stone-300 rounded-[16px] p-6 shadow-md relative overflow-hidden border-double flex flex-col justify-between group">
+                            <!-- Decorative elements -->
+                            <div class="absolute right-0 top-0 opacity-[0.06] text-9xl font-serif text-primary-400 select-none pointer-events-none">櫻</div>
+                            <div class="absolute left-6 top-6 w-3 h-3 bg-primary-400 rounded-full opacity-50"></div>
+                            
+                            <div class="flex justify-between items-start h-full">
+                                
+                                <!-- Calligraphy Vertical Section with Ruby Support -->
+                                <div class="japanese-calligraphy font-serif text-stone-850 text-sm md:text-base font-bold leading-relaxed tracking-widest pl-4 border-l border-stone-200 h-full flex items-center">
+                                    <span id="card-jp-text" class="text-stone-850 font-serif leading-loose"></span>
+                                </div>
+
+                                <!-- Left Content info -->
+                                <div class="flex flex-col justify-between h-full text-right ml-auto z-10">
+                                    <div>
+                                        <span class="text-[10px] tracking-widest text-primary-500 border border-primary-200 px-3 py-1 rounded-full font-bold font-sans bg-primary-50">御朱印風 ✦ 櫻見名片</span>
+                                        <h4 id="card-cn-name" class="text-2xl font-serif font-black text-stone-850 mt-2">櫻花</h4>
+                                        <p id="card-cn-job" class="text-xs text-stone-500 font-medium">學生</p>
+                                    </div>
+                                    <div class="mt-auto">
+                                        <p class="text-[10px] text-stone-500 leading-tight font-medium">愛好: <span id="card-cn-hobby">旅行</span></p>
+                                        <p class="text-[9px] text-stone-350 font-serif mt-1">沉浸日語 · 2026 春季會</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Audio and Action Bar with fully circular buttons -->
+                        <div class="flex flex-wrap gap-3 mt-2 w-full max-w-md justify-center">
+                            <button onclick="playIntroSpeech()" class="flex-1 bg-navy-800 hover:bg-navy-900 text-white font-semibold text-xs py-3.5 px-5 rounded-full shadow transition-all duration-200 flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-play-pause"></i> 聆聽 AI 導讀
+                            </button>
+                            <button onclick="copyIntroText()" class="flex-1 bg-white hover:bg-stone-50 text-stone-700 border border-stone-200 font-semibold text-xs py-3.5 px-5 rounded-full shadow transition-all duration-200 flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-copy"></i> 複製自我介紹
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 4: SPATIAL DIRECTIONS (空間問路) -->
+        <section id="tab-map" class="spa-view hidden animate-fade-in">
+            <div class="bg-white border border-stone-200/60 rounded-[16px] p-6 md:p-10 shadow-sm relative overflow-hidden">
+                <div class="absolute left-0 bottom-0 w-48 h-48 bg-rose-50/50 rounded-full blur-3xl pointer-events-none"></div>
+                
+                <div class="mb-8">
+                    <span class="text-xs font-bold tracking-wider text-primary-500 uppercase">MILESTONE 03</span>
+                    <h3 class="text-2xl font-serif font-extrabold text-navy-800 flex items-center gap-2 mt-1">
+                        空間問路導引系統 <span class="font-normal text-sm text-stone-500 font-sans">（道を聞く ＆ 道を教える）</span>
+                    </h3>
+                    <p class="text-navy-700 text-sm mt-1 max-w-2xl font-medium">
+                        實用日常會話大考驗。先在地圖上指定您的「目前起點」與「目標目的地」，系統將動態編譯專屬的雙人角色指路會話，並在地圖上精確勾勒出移動路線。
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    
+                    <!-- Left: Intelligent Map Console - pure white background with 16px rounding -->
+                    <div class="lg:col-span-6 bg-white border border-stone-200 rounded-[16px] p-6 flex flex-col gap-4 shadow-sm">
+                        <span class="text-xs font-bold text-navy-800 uppercase tracking-wider block text-center">雙點方向定位地圖</span>
+                        
+                        <!-- Route Controller Panel -->
+                        <div class="grid grid-cols-2 gap-3 bg-navy-50 p-3 rounded-[14px] border border-stone-200/60 text-xs">
+                            <div>
+                                <label class="block font-bold text-navy-800 mb-1">📍 1. 選擇起點定位：</label>
+                                <select id="map-start-node" onchange="updateMapRouting()" class="w-full bg-white border border-stone-200 rounded-full px-3 py-2.5 focus:outline-none focus:border-primary-300 font-medium">
+                                    <option value="station" selected>浅草駅 (車站)</option>
+                                    <option value="kaminarimon">雷門 (大門)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block font-bold text-navy-800 mb-1">🏁 2. 選擇目標終點：</label>
+                                <select id="map-end-node" onchange="updateMapRouting()" class="w-full bg-white border border-stone-200 rounded-full px-3 py-2.5 focus:outline-none focus:border-primary-300 font-medium">
+                                    <option value="sensoji" selected>浅草寺 (本堂)</option>
+                                    <option value="conveni">コンビニ (超商)</option>
+                                    <option value="shrine">淺草神社 (側院)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- SVG Map -->
+                        <div class="w-full aspect-[4/3] bg-[#faf9f7] border border-stone-200 rounded-[16px] relative overflow-hidden flex items-center justify-center shadow-inner">
+                            <svg class="w-full h-full" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Background grid -->
+                                <rect x="0" y="0" width="400" height="300" fill="#faf9f7" />
+                                <path d="M 60 0 L 60 300 M 180 0 L 180 300 M 320 0 L 320 300" stroke="#f1ece4" stroke-width="12" stroke-linecap="round" />
+                                <path d="M 0 70 L 400 70 M 0 160 L 400 160 M 0 250 L 400 250" stroke="#f1ece4" stroke-width="12" stroke-linecap="round" />
+                                
+                                <!-- Node Locations -->
+                                <circle cx="60" cy="250" r="16" fill="#3b82f6" opacity="0.1" />
+                                <circle cx="60" cy="250" r="6" fill="#3b82f6" />
+                                <text x="60" y="278" font-family="'Noto Serif JP', serif" font-size="9" font-weight="bold" fill="#2563eb" text-anchor="middle">浅草駅 (起點A)</text>
+
+                                <circle cx="180" cy="250" r="16" fill="#f59e0b" opacity="0.1" />
+                                <circle cx="180" cy="250" r="6" fill="#f59e0b" />
+                                <text x="180" y="278" font-family="'Noto Serif JP', serif" font-size="9" font-weight="bold" fill="#d97706" text-anchor="middle">雷門 (起點B)</text>
+
+                                <circle cx="180" cy="70" r="16" fill="#ef4444" opacity="0.1" />
+                                <circle cx="180" cy="70" r="6" fill="#ef4444" />
+                                <text x="180" y="50" font-family="'Noto Serif JP', serif" font-size="9" font-weight="bold" fill="#dc2626" text-anchor="middle">浅草寺 (終點)</text>
+
+                                <circle cx="320" cy="160" r="16" fill="#10b981" opacity="0.1" />
+                                <circle cx="320" cy="160" r="6" fill="#10b981" />
+                                <text x="320" y="188" font-family="'Noto Serif JP', serif" font-size="9" font-weight="bold" fill="#059669" text-anchor="middle">コンビニ (超商)</text>
+
+                                <circle cx="320" cy="70" r="16" fill="#8b5cf6" opacity="0.1" />
+                                <circle cx="320" cy="70" r="6" fill="#8b5cf6" />
+                                <text x="320" y="50" font-family="'Noto Serif JP', serif" font-size="9" font-weight="bold" fill="#6d28d9" text-anchor="middle">淺草神社</text>
+
+                                <!-- Path Guide Lines -->
+                                <path id="path-station-to-sensoji" d="M 60 250 L 180 250 L 180 70" fill="none" stroke="#534AB7" stroke-width="4" stroke-dasharray="6,4" class="transition-all duration-500 opacity-0" />
+                                <path id="path-station-to-conveni" d="M 60 250 L 180 250 L 180 160 L 320 160" fill="none" stroke="#534AB7" stroke-width="4" stroke-dasharray="6,4" class="transition-all duration-500 opacity-0" />
+                                <path id="path-station-to-shrine" d="M 60 250 L 180 250 L 180 70 L 320 70" fill="none" stroke="#534AB7" stroke-width="4" stroke-dasharray="6,4" class="transition-all duration-500 opacity-0" />
+                                <path id="path-kaminarimon-to-sensoji" d="M 180 250 L 180 70" fill="none" stroke="#534AB7" stroke-width="4" stroke-dasharray="6,4" class="transition-all duration-500 opacity-0" />
+                                <path id="path-kaminarimon-to-conveni" d="M 180 250 L 180 160 L 320 160" fill="none" stroke="#534AB7" stroke-width="4" stroke-dasharray="6,4" class="transition-all duration-500 opacity-0" />
+                                <path id="path-kaminarimon-to-shrine" d="M 180 250 L 180 70 L 320 70" fill="none" stroke="#534AB7" stroke-width="4" stroke-dasharray="6,4" class="transition-all duration-500 opacity-0" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Right: Multi-round Dialogue Flow console -->
+                    <div class="lg:col-span-6 flex flex-col gap-4">
+                        <span class="text-xs font-bold text-navy-800 block uppercase tracking-widest font-medium">實用多輪指路會話模擬</span>
+                        <div class="bg-white border border-stone-200 rounded-[16px] p-5 flex flex-col gap-4 shadow-sm" id="map-dialogue-console">
+                            <!-- Populated Dynamically by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 5: FESTIVALS & SHRINES (節慶與祭典) -->
+        <section id="tab-matsuri" class="spa-view hidden animate-fade-in">
+            <div class="bg-white border border-stone-200/60 rounded-[16px] p-6 md:p-10 shadow-sm relative overflow-hidden">
+                <div class="mb-8">
+                    <span class="text-xs font-bold tracking-wider text-primary-500 uppercase">MILESTONE 04</span>
+                    <h3 class="text-2xl font-serif font-extrabold text-navy-800 flex items-center gap-2 mt-1">
+                        四季節慶與三大祭典 <span class="font-normal text-sm text-stone-500 font-sans">（日本の祭りと文化）</span>
+                    </h3>
+                    <p class="text-navy-700 text-sm mt-1 font-medium">
+                        跨越日常語言、邁向深度文化底蘊的橋樑。點擊切換下方春夏秋冬標籤，探索大和民族對季節的敬畏與熱情，並挑戰四季專屬的禮儀文化小問答！
+                    </p>
+                </div>
+
+                <!-- Season selector Tabs with pill-shape fully rounded buttons -->
+                <div class="flex flex-wrap border-b border-stone-200/60 pb-3 mb-6 gap-2">
+                    <button onclick="selectMatsuriSeason('spring')" id="btn-matsuri-spring" class="px-5 py-2.5 rounded-full text-xs font-bold transition-all border border-primary-500 text-white bg-primary-500 shadow-sm">春季 ✦ お花見</button>
+                    <button onclick="selectMatsuriSeason('summer')" id="btn-matsuri-summer" class="px-5 py-2.5 rounded-full text-xs font-bold transition-all text-navy-800 border border-transparent hover:border-stone-200 hover:bg-stone-50">夏季 ✦ 祇園祭</button>
+                    <button onclick="selectMatsuriSeason('autumn')" id="btn-matsuri-autumn" class="px-5 py-2.5 rounded-full text-xs font-bold transition-all text-navy-800 border border-transparent hover:border-stone-200 hover:bg-stone-50">秋季 ✦ 紅葉狩り</button>
+                    <button onclick="selectMatsuriSeason('winter')" id="btn-matsuri-winter" class="px-5 py-2.5 rounded-full text-xs font-bold transition-all text-navy-800 border border-transparent hover:border-stone-200 hover:bg-stone-50">冬季 ✦ 初詣</button>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    <!-- Left: Cultured Details - pure white background with 16px corners -->
+                    <div class="lg:col-span-7 bg-white border border-stone-200 rounded-[16px] p-6 shadow-sm" id="matsuri-details-panel">
+                        <!-- Populated by JavaScript dynamically -->
+                    </div>
+
+                    <!-- Right: Quiz Sandbox per Season - styled with deep navy #2c3e50 -->
+                    <div class="lg:col-span-5 bg-navy-800 text-stone-100 rounded-[16px] p-6 border border-stone-700 shadow-md">
+                        <span class="text-xs text-primary-200 font-bold block mb-1 uppercase tracking-widest"><i class="fa-solid fa-graduation-cap"></i> 祭典與神社文化禮儀小問答</span>
+                        <div id="matsuri-quiz-box" class="mt-4 flex flex-col gap-4">
+                            <!-- Dynamic quiz populated here per season -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 6: AI COACH (AI 智慧語意與文化教練) -->
+        <section id="tab-ai" class="spa-view hidden animate-fade-in">
+            <div class="bg-white border border-stone-200 rounded-[16px] p-6 md:p-10 shadow-lg relative overflow-hidden">
+                <div class="absolute right-4 top-4 text-xs font-bold font-serif text-stone-400 select-none opacity-20">GEMINI LIVE INSPIRED</div>
+                
+                <div class="mb-8">
+                    <span class="text-xs font-bold tracking-widest text-primary-500 uppercase bg-primary-50 border border-primary-100 px-3 py-1 rounded-full"><i class="fa-solid fa-brain"></i> 展演高科技展示</span>
+                    <h3 class="text-2xl md:text-3xl font-serif font-black text-navy-800 mt-4 leading-tight">AI 語意大師與文化教練</h3>
+                    <p class="text-navy-700 text-sm mt-1 font-medium">
+                        在下方輸入你正在學習的任何初級日文句子，或者你想問的任何日本文化（例如：為什麼一月一日要去初詣？），Gemini 將實時為你分析句型，並生成完美的語法剖析與發音！
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    
+                    <!-- Left: Interactive Question Sandbox -->
+                    <div class="lg:col-span-6 flex flex-col gap-4">
+                        <div class="bg-white border border-stone-200 p-5 rounded-[16px] shadow-sm">
+                            <label class="block text-xs font-bold text-navy-700 mb-2 uppercase">請輸入任何日文句型或文化提問</label>
+                            <textarea id="ai-prompt-input" rows="3" placeholder="例如：我想了解 'あめ' (雨) 與 'あめ' (糖果) 的高低音差別" class="w-full bg-[#faf9f7] border border-stone-200 rounded-[14px] px-4 py-3 text-sm focus:outline-none focus:border-primary-400 transition-colors text-stone-800 resize-none"></textarea>
+                            
+                            <!-- Suggestion tags -->
+                            <div class="mt-3 flex flex-wrap gap-1.5">
+                                <span class="text-[10px] text-navy-800 hover:text-white hover:bg-primary-500 border border-stone-200 rounded-full px-3 py-1.5 cursor-pointer transition-colors" onclick="fillPrompt('居酒屋必備的助詞 ❝で❞ 和 ❝に❞ 差別在哪？')">助詞差別</span>
+                                <span class="text-[10px] text-navy-800 hover:text-white hover:bg-primary-500 border border-stone-200 rounded-full px-3 py-1.5 cursor-pointer transition-colors" onclick="fillPrompt('分析日文自我介紹中 ❝どうぞよろしくお願いします❞ 的完整含義')">請多指教分析</span>
+                                <span class="text-[10px] text-navy-800 hover:text-white hover:bg-primary-500 border border-stone-200 rounded-full px-3 py-1.5 cursor-pointer transition-colors" onclick="fillPrompt('初詣和一般到神社參拜有何不同？')">初詣文化</span>
+                                <span class="text-[10px] text-navy-800 hover:text-white hover:bg-primary-500 border border-stone-200 rounded-full px-3 py-1.5 cursor-pointer transition-colors" onclick="fillPrompt('請提供一個常用的點餐對話，並說明 ❝お願いします❞ 怎麼使用。')">點餐實用句</span>
+                            </div>
+                        </div>
+
+                        <button onclick="askGeminiCoach()" id="ai-ask-btn" class="w-full bg-navy-800 hover:bg-navy-900 text-white font-bold py-3.5 px-4 rounded-full shadow transition-transform hover:scale-102 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-sparkles text-amber-300"></i> 向 AI 文化教練發問
+                        </button>
+                    </div>
+
+                    <!-- Right: AI Reply Panel with live Visualizer -->
+                    <div class="lg:col-span-6 flex flex-col gap-4">
+                        <div class="bg-white border border-stone-200 p-6 rounded-[16px] min-h-[220px] flex flex-col justify-between relative shadow-sm">
+                            <!-- Simulated status and loading bar -->
+                            <div class="flex justify-between items-center border-b border-stone-100 pb-3 mb-3">
+                                <span class="text-xs font-bold text-primary-500 flex items-center gap-1"><i class="fa-solid fa-brain animate-pulse"></i> AI 教練分析回報</span>
+                                <span class="text-[10px] text-stone-450 bg-stone-100 px-2 py-0.5 rounded" id="ai-status">待命（Ready）</span>
+                            </div>
+                            
+                            <!-- Real-time Loading Indicator -->
+                            <div id="ai-loader" class="hidden absolute inset-0 bg-white/80 backdrop-blur-sm flex flex-col items-center justify-center rounded-[16px] z-20">
+                                <div class="w-8 h-8 border-4 border-primary-200 border-t-primary-500 rounded-full animate-spin"></div>
+                                <span class="text-xs text-stone-500 font-medium mt-3">Gemini 正在轉譯文化與句型...</span>
+                            </div>
+
+                            <!-- Main AI Text Output Content -->
+                            <div id="ai-output" class="text-xs md:text-sm text-navy-800 leading-relaxed font-sans flex-1 overflow-y-auto max-h-[240px]">
+                                點擊左側的提問範例或輸入你自己的句子。我將為您做語意拆解、提供真人發音與微文化背景分析！
+                            </div>
+
+                            <!-- Integrated high fidelity TTS reader -->
+                            <div id="ai-tts-box" class="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between gap-4 hidden">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse"></span>
+                                    <span class="text-[10px] text-stone-500 font-medium">您可以聆聽此段日文的 AI 高保真語音發音</span>
+                                </div>
+                                <button onclick="synthesizeAiResponse()" class="bg-primary-50 hover:bg-primary-100 border border-primary-200/50 text-primary-600 text-xs font-bold px-4 py-2 rounded-full flex items-center gap-1 transition-all">
+                                    <i class="fa-solid fa-microphone"></i> 朗讀分析內容
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer of project -->
+    <footer class="bg-navy-800 text-stone-300 py-12 px-6 border-t border-stone-700 relative z-20 mt-16">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-primary-500 flex items-center justify-center text-white text-sm font-bold">二</div>
+                <div>
+                    <h5 class="font-serif font-bold text-white text-sm tracking-wide">階段二：起步期 ✦ 專案成果展示</h5>
+                    <p class="text-[10px] text-stone-400">期末展演專屬：Vibe-Driven Project SPA 多分頁整合版</p>
+                </div>
+            </div>
+            
+            <p class="text-[10px] text-stone-400 text-center md:text-right font-medium">
+                本系統完全遵守無 Alert 指令，並提供優雅的自研 Toast 浮動視窗系統。<br>
+                All Rights Reserved © 2026.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // --- SPA ROUTER & VIEW SWITCHER SYSTEM ---
+        function switchTab(targetTabId) {
+            // Hide all SPA views
+            const views = document.querySelectorAll('.spa-view');
+            views.forEach(v => v.classList.add('hidden'));
+
+            // Show target view with animation re-trigger
+            const targetView = document.getElementById(targetTabId);
+            if (targetView) {
+                targetView.classList.remove('hidden');
+                targetView.style.animation = 'none';
+                targetView.offsetHeight; /* trigger reflow */
+                targetView.style.animation = null;
+            }
+
+            // Update Tab link visual active styles with pill-shape fully rounded buttons
+            const navLinks = document.getElementById('spa-nav-links').getElementsByTagName('button');
+            for (let btn of navLinks) {
+                if (btn.id === `nav-${targetTabId}`) {
+                    btn.className = "px-4 py-2 rounded-full transition-all duration-200 text-white bg-primary-500 border border-primary-600 font-semibold shadow-sm";
+                } else {
+                    btn.className = "px-4 py-2 rounded-full transition-all duration-200 text-navy-800 hover:text-primary-500 hover:bg-white border border-transparent hover:border-stone-200";
+                }
+            }
+
+            // Clean scroll reset for seamless navigation
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            showToast(`已切換至：${getTabFriendlyName(targetTabId)}`);
+        }
+
+        function getTabFriendlyName(id) {
+            switch(id) {
+                case 'tab-home': return '探索首頁 & 生活寒暄';
+                case 'tab-izakaya': return '深夜食堂 & 助詞試煉';
+                case 'tab-intro': return '春櫻自我介紹名片';
+                case 'tab-map': return '空間問路導引';
+                case 'tab-matsuri': return '節慶與四季節典';
+                case 'tab-ai': return 'AI 語意與文化教練';
+                default: return '分頁';
+            }
+        }
+
+        // --- CUSTOM TOAST NOTIFICATION SYSTEM ---
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `transform translate-y-2 opacity-0 transition-all duration-300 pointer-events-auto px-4 py-3 rounded-full shadow-lg border text-xs font-semibold flex items-center gap-2 max-w-sm ${
+                type === 'success' ? 'bg-wasabi-50 border-wasabi-600 text-wasabi-600' : 'bg-red-50 border-red-200 text-red-600'
+            }`;
+            
+            const icon = type === 'success' ? '<i class="fa-solid fa-circle-check"></i>' : '<i class="fa-solid fa-circle-exclamation"></i>';
+            toast.innerHTML = `${icon} <span>${message}</span>`;
+            
+            container.appendChild(toast);
+            
+            // Trigger animation
+            setTimeout(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            }, 10);
+
+            // Dismiss after 3s
+            setTimeout(() => {
+                toast.classList.add('translate-y-2', 'opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // --- CLEAN TEXT UTILITY ---
+        function getCleanText(elementId) {
+            const el = document.getElementById(elementId);
+            if (!el) return '';
+            const clone = el.cloneNode(true);
+            const rts = clone.getElementsByTagName('rt');
+            while (rts.length > 0) {
+                rts[0].parentNode.removeChild(rts[0]);
+            }
+            return clone.innerText || clone.textContent;
+        }
+
+        // --- Scenario 1 - Self Intro Compiler Logic ---
+        function compileSelfIntro() {
+            const name = document.getElementById('intro-name').value || '櫻花';
+            const jobVal = (document.getElementById('intro-job').value || '').trim();
+            const hobbyVal = (document.getElementById('intro-hobby').value || '').trim();
+            
+            const jobMap = {
+                "學生": { ruby: "<ruby>学生<rt>がくせい</rt></ruby>", clean: "学生" },
+                "學生": { ruby: "<ruby>学生<rt>がくせい</rt></ruby>", clean: "学生" },
+                "学生": { ruby: "<ruby>学生<rt>がくせい</rt></ruby>", clean: "学生" },
+                "工程師": { ruby: "エンジニア", clean: "エンジニア" },
+                "エンジニア": { ruby: "エンジニア", clean: "エンジニア" },
+                "設計師": { ruby: "デザイナー", clean: "デザイナー" },
+                "デザイナー": { ruby: "デザイナー", clean: "デザイナー" },
+                "老師": { ruby: "<ruby>先生<rt>せんせい</rt></ruby>", clean: "先生" },
+                "先生": { ruby: "<ruby>先生<rt>せんせい</rt></ruby>", clean: "先生" },
+                "旅人": { ruby: "<ruby>旅人<rt>たびびと</rt></ruby>", clean: "旅人" },
+                "旅者": { ruby: "<ruby>旅人<rt>たびびto</rt></ruby>", clean: "旅人" },
+                "醫生": { ruby: "<ruby>医師<rt>いし</rt></ruby>", clean: "医師" },
+                "醫師": { ruby: "<ruby>医師<rt>いし</rt></ruby>", clean: "医師" },
+                "廚師": { ruby: "シェフ", clean: "シェフ" }
+            };
+            
+            const hobbyMap = {
+                "旅行": { ruby: "<ruby>旅行<rt>りょこう</rt></ruby>", clean: "旅行" },
+                "旅遊": { ruby: "<ruby>旅行<rt>りょこう</rt></ruby>", clean: "旅行" },
+                "聽音樂": { ruby: "<ruby>音楽<rt>おんがく</rt></ruby>を<ruby>聴<rt>き</rt></ruby>くこと", clean: "音楽を聴くこと" },
+                "聽歌": { ruby: "<ruby>音楽<rt>おんがく</rt></ruby>を<ruby>聴<rt>き</rt></ruby>くこと", clean: "音楽を聴くこと" },
+                "音樂": { ruby: "<ruby>音楽<rt>おんがく</rt></ruby>を<ruby>聴<rt>き</rt></ruby>くこと", clean: "音楽を聴くこと" },
+                "看動漫": { ruby: "アニメを<ruby>見<rt>み</rt></ruby>ること", clean: "アニメを見ること" },
+                "動漫": { ruby: "アニメを<ruby>見<rt>み</rt></ruby>ること", clean: "アニメを見ること" },
+                "看動畫": { ruby: "アニメを<ruby>見<rt>み</rt></ruby>ること", clean: "アニメを見ること" },
+                "美食": { ruby: "<ruby>美味<rt>おい</rt></ruby>しいものを<ruby>食<rt>た</rt></ruby>べること", clean: "美味しいものを食べること" },
+                "吃美食": { ruby: "<ruby>美味<rt>おい</rt></ruby>しいものを<ruby>食<rt>た</rt></ruby>べること", clean: "美味しいものを食べること" },
+                "學日文": { ruby: "<ruby>日本語<rt>にほんご</rt></ruby>を<ruby>勉強<rt>べんきょう</rt></ruby>すること", clean: "日本語を勉強すること" },
+                "學日語": { ruby: "<ruby>日本語<rt>にほんご</rt></ruby>を<ruby>勉強<rt>べんきょう</rt></ruby>すること", clean: "日本語を勉強すること" },
+                "日文": { ruby: "<ruby>日本語<rt>にほんご</rt></ruby>を<ruby>勉強<rt>べんきょう</rt></ruby>すること", clean: "日本語を勉強すること" },
+                "讀書": { ruby: "<ruby>本<rt>ほん</rt></ruby>を<ruby>読<rt>よ</rt></ruby>むこと", clean: "本を読むこと" },
+                "看書": { ruby: "<ruby>本<rt>ほん</rt></ruby>を<ruby>読<rt>よ</rt></ruby>むこと", clean: "本を読むこと" },
+                "攝影": { ruby: "<ruby>写真<rt>しゃしん</rt></ruby>を<ruby>撮<rt>と</rt></ruby>ること", clean: "写真を撮ること" },
+                "拍照": { ruby: "<ruby>写真<rt>しゃしん</rt></ruby>を<ruby>撮<rt>と</rt></ruby>ること", clean: "写真を撮ること" }
+            };
+
+            const resolvedJob = jobMap[jobVal] || { ruby: jobVal, clean: jobVal };
+            const resolvedHobby = hobbyMap[hobbyVal] || { ruby: hobbyVal, clean: hobbyVal };
+
+            // Render Card displays
+            document.getElementById('card-cn-name').innerText = name;
+            document.getElementById('card-cn-job').innerText = jobVal;
+            document.getElementById('card-cn-hobby').innerText = hobbyVal;
+
+            // Generate Calligraphy
+            const compiledJpWithRuby = `はじめまして。<br><ruby>私<rt>わたし</rt></ruby>は ${name} です。<br>${resolvedJob.ruby} です。<br><ruby>趣味<rt>しゅみ</rt></ruby>は ${resolvedHobby.ruby} です。<br>どうぞよろしくお<ruby>願<rt>ねが</rt></ruby>いします。`;
+            const cleanTextBuffer = `はじめまして。私は ${name} です。${resolvedJob.clean} です。趣味は ${resolvedHobby.clean} です。どうぞよろしくお願いします。`;
+            
+            const cardTextNode = document.getElementById('card-jp-text');
+            cardTextNode.innerHTML = compiledJpWithRuby;
+            cardTextNode.setAttribute('data-clean', cleanTextBuffer);
+        }
+
+        async function aiTranslateCard() {
+            const name = document.getElementById('intro-name').value || '櫻花';
+            const job = document.getElementById('intro-job').value || '學生';
+            const hobby = document.getElementById('intro-hobby').value || '旅行';
+
+            const btn = document.getElementById('ai-card-translate-btn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-spinner animate-spin text-white"></i> AI 轉譯與生成中...';
+            btn.disabled = true;
+
+            const apiKey = ""; 
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+
+            const systemPrompt = `你是一個專業精緻的日語翻譯大師，專門為初學者製作精美的自我介紹日文卡片。
+            請將使用者輸入的「名字」、「職業」和「興趣」，翻譯成地道優雅的日文，並返回一個嚴格且合法的 JSON 對象。
+            規定：
+            1. 日文中只要有漢字，就必須加上 HTML <ruby> 標籤（例如：<ruby>学生<rt>がくせい</rt></ruby>、<ruby>旅行<rt>りょこう</rt></ruby>）。
+            2. 句子結構必須是：
+               はじめまして。
+               私は [名字的日文，如果名字是中文字，若不確定拼音，直接保留漢字並在上面標記合理的音讀或訓讀振假名，如 櫻花標記さくら] です。
+               [職業日文加上ruby標記] です。
+               趣味は [興趣日文加上ruby標記] です。
+               どうぞよろしくお願いします。
+            3. 格式要求：
+               回傳必須為純粹的 JSON 對象。不可包含 \`\`\`json 標記或引號外的說明，以便程式直接 JSON.parse() 解析。
+            JSON 結構：
+            {
+              "name_translated": "名字的翻譯帶ruby",
+              "job_translated": "職業的翻譯帶ruby",
+              "hobby_translated": "興趣的翻譯帶ruby",
+              "intro_sentence_ruby": "はじめまして。<br><ruby>私<rt>わたし</rt></ruby>は...<br>...どうぞよろしくお<ruby>願<rt>ねが</rt></ruby>いします。",
+              "clean_speech": "はじめまして。私は...です。..."
+            }`;
+
+            const userPrompt = `請翻譯並標記振假名：
+            名字：${name}
+            職業/身分：${job}
+            愛好/興趣：${hobby}`;
+
+            const payload = {
+                contents: [{ parts: [{ text: userPrompt }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] }
+            };
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) throw new Error('API failed');
+
+                const result = await response.json();
+                let text = result.candidates?.[0]?.content?.parts?.[0]?.text;
+                
+                text = text.replace(/```json/g, '').replace(/```/g, '').trim();
+                const data = JSON.parse(text);
+
+                // Update business card displays
+                document.getElementById('card-cn-name').innerText = name;
+                document.getElementById('card-cn-job').innerText = job;
+                document.getElementById('card-cn-hobby').innerText = hobby;
+
+                const cardTextNode = document.getElementById('card-jp-text');
+                cardTextNode.innerHTML = data.intro_sentence_ruby;
+                cardTextNode.setAttribute('data-clean', data.clean_speech);
+
+                showToast('✨ AI 智能翻譯成功！已將客製化名片升級為優雅的振假名日文！');
+            } catch (e) {
+                console.error(e);
+                showToast('無法連線 AI 大師，已套用本地智能字典進行即時渲染。', 'error');
+                compileSelfIntro(); 
+            } finally {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        }
+
+        function copyIntroText() {
+            const textToCopy = document.getElementById('card-jp-text').getAttribute('data-clean') || getCleanText('card-jp-text');
+            const tempInput = document.createElement('textarea');
+            tempInput.value = textToCopy;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast('已成功複製自我介紹日文文本（已自動過濾拼音標記）！');
+        }
+
+        // --- AUDIO ENGINE ---
+        function playSampleVoice(text, voiceType = 'Leda') {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'ja-JP';
+                utterance.rate = 0.85; 
+                
+                const voices = window.speechSynthesis.getVoices();
+                const jpVoice = voices.find(v => v.lang.startsWith('ja') && (v.name.includes('Google') || v.name.includes('Female') || v.name.includes('Kyoko')));
+                if (jpVoice) utterance.voice = jpVoice;
+
+                window.speechSynthesis.speak(utterance);
+                showToast(`正在播放發音: "${text.substring(0, 18)}..."`);
+            } else {
+                showToast('您的瀏覽器不支援 Web Speech API。', 'error');
+            }
+        }
+
+        function playIntroSpeech() {
+            const jpText = document.getElementById('card-jp-text').getAttribute('data-clean') || getCleanText('card-jp-text');
+            playSampleVoice(jpText, 'Leda');
+        }
+
+        // --- Scenario 2 - Izakaya Particles Game System & 5 Quests ---
+        let currentQuestIndex = 0;
+        let selectedSlots = { 1: null, 2: null, 3: null };
+
+        const quests = [
+            {
+                title: "關卡 1: 初進居酒屋",
+                questionCn: "「我要到居酒屋去喝啤酒。」（最基礎的賓主方向關係）",
+                segments: [
+                    { type: 'text', value: '<ruby>私<rt>わたし</rt></ruby>' },
+                    { type: 'slot', id: 1 },
+                    { type: 'text', value: '<ruby>居酒屋<rt>いざかや</rt></ruby>' },
+                    { type: 'slot', id: 2 },
+                    { type: 'text', value: '<ruby>行<rt>い</rt></ruby>って、ビール' },
+                    { type: 'slot', id: 3 },
+                    { type: 'text', value: '<ruby>飲<rt>の</rt></ruby>みます。' }
+                ],
+                answers: ["は", "に", "を"],
+                helpText: "私(は)是句子主題；居酒屋(に)代表前進的目標點（目的地）；而啤酒(を)則是動詞「喝（飲みます）」所作用的直接受詞。"
+            },
+            {
+                title: "關卡 2: 點餐起手式",
+                questionCn: "「在居酒屋裡，決定要點（兩杯）生啤酒。」（場所與選定語法）",
+                segments: [
+                    { type: 'text', value: '<ruby>居酒屋<rt>いざかや</rt></ruby>' },
+                    { type: 'slot', id: 1 },
+                    { type: 'text', value: '<ruby>生<rt>なま</rt></ruby>ビール' },
+                    { type: 'slot', id: 2 },
+                    { type: 'text', value: '<ruby>二杯<rt>にはい</rt></ruby>' },
+                    { type: 'slot', id: 3 },
+                    { type: 'text', value: 'します。' }
+                ],
+                answers: ["で", "を", "に"],
+                helpText: "居酒屋(で)表示動作發生的地點場所；生ビール(を)是點餐的核心受詞；「～にします」則是日語中用來表示決定、點某種餐點的實用句型。"
+            },
+            {
+                title: "關卡 3: 味道的讚美",
+                questionCn: "「在熱鬧的居酒屋，朋友很喜歡吃烤雞串。」（喜好對象語法）",
+                segments: [
+                    { type: 'text', value: '<ruby>居酒屋<rt>いざかや</rt></ruby>' },
+                    { type: 'slot', id: 1 },
+                    { type: 'text', value: '<ruby>友達<rt>ともだち</rt></ruby>' },
+                    { type: 'slot', id: 2 },
+                    { type: 'text', value: '<ruby>焼<rt>や</rt></ruby>き<ruby>鳥<rt>とり</rt></ruby>' },
+                    { type: 'slot', id: 3 },
+                    { type: 'text', value: '<ruby>好<rt>す</rt></ruby>きです。' }
+                ],
+                answers: ["で", "は", "が"],
+                helpText: "居酒屋(for)為喜好發生或展現的地點；友達(は)是談論的主題；而焼き鳥(が)與形容動詞「好き（喜歡）」搭配，用 が 指示喜愛的具體對象。"
+            },
+            {
+                title: "關卡 4: 共同與目的 (と 的導入)",
+                questionCn: "「和朋友一起在居酒屋點餐（啤酒）。」（共同對象與動作場所關係）",
+                segments: [
+                    { type: 'text', value: '<ruby>友達<rt>ともだち</rt></ruby>' },
+                    { type: 'slot', id: 1 },
+                    { type: 'text', value: '<ruby>居酒屋<rt>いざかや</rt></ruby>' },
+                    { type: 'slot', id: 2 },
+                    { type: 'text', value: 'ビール' },
+                    { type: 'slot', id: 3 },
+                    { type: 'text', value: '<ruby>頼<rt>たの</rt></ruby>みます。' }
+                ],
+                answers: ["と", "で", "を"],
+                helpText: "友達(と)代表執行動作的共同伴隨對象（和朋友一起）；居酒屋(で)代表點餐動作發生的場域；而啤酒(を)則是動詞「點餐（頼みます）」的直接受詞。"
+            },
+            {
+                title: "關卡 5: 歡樂乾杯",
+                questionCn: "「大家一起高舉啤酒乾杯，然後朝家回去。」（狀態與移動方向）",
+                segments: [
+                    { type: 'text', value: 'みんな' },
+                    { type: 'slot', id: 1 },
+                    { type: 'text', value: 'ビール' },
+                    { type: 'slot', id: 2 },
+                    { type: 'text', value: '<ruby>飲<rt>の</rt></ruby>んで、<ruby>家<rt>いえ</rt></ruby>' },
+                    { type: 'slot', id: 3 },
+                    { type: 'text', value: '<ruby>帰<rt>かえ</rt></ruby>ります。' }
+                ],
+                answers: ["で", "を", "へ"],
+                helpText: "みんな(で)表示執行動作的人數範圍、狀態（大家一起）；ビール(を)是動作受詞；家(へ/に)則代表朝著「家」的方向移動。"
+            }
+        ];
+
+        const particlesDatabase = {
+            'は': {
+                role: "主題提示 (Topic Marker)",
+                formula: "名詞 [ 主題 ] + は + 說明/描述語",
+                explanation: "「は」用來提示整個句子的『主題』。其作用就像一個聚光燈，把後面的說明內容全部聚焦在這個主題上。對話中的主詞若為舊資訊或已知的主題，往往會用『は』提示並省略其他冗餘結構。",
+                examples: [
+                    { jp: "<ruby>私<rt>わたし</rt></ruby>は<ruby>学生<rt>がくせい</rt></ruby>です。", cn: "我是學生。" },
+                    { jp: "ビールは<ruby>冷<rt>つめ</rt></ruby>たいです。", cn: "啤酒是冰的。" }
+                ]
+            },
+            'が': {
+                role: "主詞指示與喜好能力對象 (Subject/Object of Interest)",
+                formula: "名詞 [ 主體/對象 ] + が + 形容詞/自動詞/能力詞",
+                explanation: "與廣泛的主題提示『は』不同，『が』具有『排他性的強調』或用於引出『喜好、能力、需求、存在』的對象。例如，表達喜愛、討厭、想要時，對象一定要用『が』。",
+                examples: [
+                    { jp: "<ruby>焼<rt>や</rt></ruby>き<ruby>鳥<rt>とり</rt></ruby>が<ruby>好<rt>す</rt></ruby>きです。", cn: "我喜歡烤雞串。" },
+                    { jp: "<ruby>日本語<rt>にほんご</rt></ruby>が<ruby>分<rt>わ</rt></ruby>かります。", cn: "我懂日語。" }
+                ]
+            },
+            'を': {
+                role: "直接受詞 (Direct Object)",
+                formula: "名詞 [ 受詞 ] + を + 他動詞 (動作詞)",
+                explanation: "「を」專門用來標示『他動詞』動作所作用的直接對象。簡單來說，就是動作的『受詞』。例如，喝『什麼』、吃『什麼』、點『什麼』，其中這個『什麼』後面就是接『を』。",
+                examples: [
+                    { jp: "ビールを<ruby>飲<rt>の</rt></ruby>みます。", cn: "喝啤酒。" },
+                    { jp: "<ruby>焼<rt>や</rt></ruby>き<ruby>鳥<rt>とり</rt></ruby>を<ruby>食<rt>た</rt></ruby>べます。", cn: "吃烤雞串。" }
+                ]
+            },
+            'に': {
+                role: "時間/目的地/動作對象 (Destination & Specific Target)",
+                formula: "場所 [ 存在/目標 ] + に | 時間 [ 點 ] + に",
+                explanation: "「に」的用途極廣，主要用於表示：(1) 移動動作的『目的地、到達點』；(2) 具體的時間點；(3) 授受對象（交給某人、向某人詢問）。它強調的是一個『精確、指向特定方向的點』。",
+                examples: [
+                    { jp: "<ruby>居酒屋<rt>いざかや</rt></ruby>に<ruby>行<rt>い</rt></ruby>きます。", cn: "去居酒屋。" },
+                    { jp: "<ruby>友達<rt>ともだち</rt></ruby>に<ruby>財布<rt>さいふ</rt></ruby>を<ruby>渡<rt>わた</rt></ruby>します。", cn: "把錢包交給朋友。" }
+                ]
+            },
+            'で': {
+                role: "動作場所與方法工具 (Location of Action & Means)",
+                formula: "場所 [ 動作發生地 ] + で | 工具/手段 + で",
+                explanation: "與『に』代表靜態的地點外，『で』表示『在該場所執行某個主動的動作』。同時，它也代表『使用某種工具或手段』（例如：用筷子吃、用日語說、大家一起）。",
+                examples: [
+                    { jp: "<ruby>居酒屋<rt>いざかや</rt></ruby>でビールを<ruby>飲<rt>の</rt></ruby>みます。", cn: "在居酒屋喝啤酒。" },
+                    { jp: "<ruby>日本語<rt>にほんご</rt></ruby>で<ruby>話<rt>はな</rt></ruby>します。", cn: "用日語說話。" }
+                ]
+            },
+            'へ': {
+                role: "移動的方向 (Directional Focus)",
+                formula: "方向/場所 [ 朝向的方向 ] + へ + 移動動詞",
+                explanation: "發音為「e」。與強調具體目標抵達點的『に』不同，『へ』更強調『朝向某個大方向移動的趨勢』。後面一定會接表示移動的動詞（如去、來、回家）。常與『に』互通使用，但『へ』更有朝向感 and 詩意。",
+                examples: [
+                    { jp: "<ruby>家<rt>いえ</rt></ruby>へ<ruby>帰<rt>かえ</rt></ruby>ります。", cn: "朝家的方向回去。" },
+                    { jp: "<ruby>日本<rt>にほん</rt></ruby>へ<ruby>行<rt>い</rt></ruby>きます。", cn: "前往日本。" }
+                ]
+            },
+            'と': {
+                role: "共同伴隨者與名詞並列 (With & And Connector)",
+                formula: "名詞 [ 共同對象 ] + と + 動作 | 名詞 + と + 名詞",
+                explanation: "「と」主要用於：(1) 表示『和某人一起』共同從事後面動作的夥伴對象；(2) 表示名詞並列連接，代表『和、跟、與』，用來列舉完整的多個物品。",
+                examples: [
+                    { jp: "<ruby>友達<rt>ともだち</rt></ruby>と<ruby>居酒屋<rt>いざかや</rt></ruby>へ<ruby>行<rt>い</rt></ruby>きます。", cn: "和朋友一起去居酒屋。" },
+                    { jp: "ビールと<ruby>焼<rt>や</rt></ruby>き<ruby>鳥<rt>とり</rt></ruby>を<ruby>頼<rt>たの</rt></ruby>みます。", cn: "點啤酒和烤雞串。" }
+                ]
+            }
+        };
+
+        function renderQuest(index) {
+            currentQuestIndex = index;
+            const quest = quests[index];
+            
+            document.getElementById('game-quest-title').innerText = quest.title;
+            document.getElementById('game-quest-cn').innerText = quest.questionCn;
+            
+            selectedSlots = { 1: null, 2: null, 3: null };
+            
+            const builderContainer = document.getElementById('sentence-builder-container');
+            builderContainer.innerHTML = '';
+            
+            quest.segments.forEach(seg => {
+                if (seg.type === 'text') {
+                    const span = document.createElement('span');
+                    span.className = 'text-stone-300 font-serif';
+                    span.innerHTML = seg.value; 
+                    builderContainer.appendChild(span);
+                } else if (seg.type === 'slot') {
+                    const slotDiv = document.createElement('div');
+                    slotDiv.id = `slot-${seg.id}`;
+                    slotDiv.className = 'w-12 h-10 border-2 border-dashed border-primary-500/50 rounded-lg flex items-center justify-center bg-stone-900 text-primary-400 font-bold text-base cursor-pointer hover:border-primary-400 transition-colors mx-1 shrink-0';
+                    slotDiv.innerText = '?';
+                    slotDiv.onclick = () => clearSlot(seg.id);
+                    builderContainer.appendChild(slotDiv);
+                }
+            });
+
+            renderQuestTabs();
+        }
+
+        function renderQuestTabs() {
+            const tabsContainer = document.getElementById('quest-tabs-container');
+            tabsContainer.innerHTML = '';
+            
+            quests.forEach((q, idx) => {
+                const button = document.createElement('button');
+                button.className = `px-4 py-2 rounded-full text-xs font-semibold border transition-all ${
+                    idx === currentQuestIndex 
+                        ? 'bg-primary-500 text-white border-primary-600 shadow-md scale-102 font-bold' 
+                        : 'bg-stone-900 text-stone-400 border-stone-800 hover:bg-stone-850 hover:text-stone-100'
+                }`;
+                button.innerText = `關卡 ${idx + 1}`;
+                button.onclick = () => renderQuest(idx);
+                tabsContainer.appendChild(button);
+            });
+        }
+
+        function selectParticle(particle) {
+            if (!selectedSlots[1]) {
+                selectedSlots[1] = particle;
+                const slot = document.getElementById('slot-1');
+                if (slot) {
+                    slot.innerText = particle;
+                    slot.classList.remove('border-dashed', 'border-primary-500/50');
+                    slot.classList.add('border-solid', 'border-primary-400');
+                }
+            } else if (!selectedSlots[2]) {
+                selectedSlots[2] = particle;
+                const slot = document.getElementById('slot-2');
+                if (slot) {
+                    slot.innerText = particle;
+                    slot.classList.remove('border-dashed', 'border-primary-500/50');
+                    slot.classList.add('border-solid', 'border-primary-400');
+                }
+            } else if (!selectedSlots[3]) {
+                selectedSlots[3] = particle;
+                const slot = document.getElementById('slot-3');
+                if (slot) {
+                    slot.innerText = particle;
+                    slot.classList.remove('border-dashed', 'border-primary-500/50');
+                    slot.classList.add('border-solid', 'border-primary-400');
+                }
+            } else {
+                showToast('插槽已滿！點擊插槽可以清除重新填寫。', 'error');
+            }
+        }
+
+        function clearSlot(slotId) {
+            selectedSlots[slotId] = null;
+            const slotNode = document.getElementById(`slot-${slotId}`);
+            if (slotNode) {
+                slotNode.innerText = '?';
+                slotNode.classList.add('border-dashed', 'border-primary-500/50');
+                slotNode.classList.remove('border-solid', 'border-primary-400');
+            }
+        }
+
+        function resetQuest() {
+            clearSlot(1);
+            clearSlot(2);
+            clearSlot(3);
+        }
+
+        function checkParticles() {
+            const currentQuest = quests[currentQuestIndex];
+            if (!selectedSlots[1] || !selectedSlots[2] || !selectedSlots[3]) {
+                showToast('請完成所有助詞拼圖！', 'error');
+                return;
+            }
+
+            const isCorrect = 
+                selectedSlots[1] === currentQuest.answers[0] &&
+                selectedSlots[2] === currentQuest.answers[1] &&
+                selectedSlots[3] === currentQuest.answers[2];
+
+            if (isCorrect) {
+                showToast('🎉 太棒了！本關點餐助詞組合完全正確！');
+                
+                document.getElementById('culture-card-content').innerHTML = `
+                    <p class="font-bold text-green-400 text-sm">💡 關卡 ${currentQuestIndex + 1} 挑戰成功：助詞剖析</p>
+                    <p class="text-stone-300">${currentQuest.helpText}</p>
+                    <p class="text-primary-400 mt-2 font-bold">可以試試看切換其他關卡，或是繼續挑戰下一關！</p>
+                `;
+                
+                setTimeout(() => {
+                    if (currentQuestIndex < quests.length - 1) {
+                        renderQuest(currentQuestIndex + 1);
+                    }
+                }, 3000);
+            } else {
+                showToast('助詞順序好像有點不對，再試試看吧！', 'error');
+            }
+        }
+
+        function initParticleGuide() {
+            const container = document.getElementById('particle-guide-tabs');
+            container.innerHTML = '';
+            
+            Object.keys(particlesDatabase).forEach((p, index) => {
+                const btn = document.createElement('button');
+                btn.className = `w-12 h-12 rounded-full border font-serif font-black text-lg transition-all flex items-center justify-center ${
+                    index === 0 
+                        ? 'bg-primary-500 text-white border-primary-600 shadow-md scale-102 font-bold' 
+                        : 'bg-stone-900 hover:bg-stone-850 text-stone-300 border-stone-800'
+                }`;
+                btn.innerText = p;
+                btn.id = `guide-btn-${p}`;
+                btn.onclick = () => selectParticleGuide(p);
+                container.appendChild(btn);
+            });
+
+            selectParticleGuide('は');
+        }
+
+        function selectParticleGuide(p) {
+            Object.keys(particlesDatabase).forEach(key => {
+                const btn = document.getElementById(`guide-btn-${key}`);
+                if (btn) {
+                    if (key === p) {
+                        btn.className = 'w-12 h-12 rounded-full border font-serif font-black text-lg bg-primary-500 text-white border-primary-400 shadow-md scale-102';
+                    } else {
+                        btn.className = 'w-12 h-12 rounded-full border font-serif font-black text-lg bg-stone-900 hover:bg-stone-850 text-stone-300 border-stone-800';
+                    }
+                }
+            });
+
+            const details = particlesDatabase[p];
+            const detailsContainer = document.getElementById('particle-guide-details');
+            
+            detailsContainer.style.opacity = '0';
+            setTimeout(() => {
+                detailsContainer.innerHTML = `
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-2 border-b border-stone-800 pb-3 mb-3">
+                        <div>
+                            <span class="text-stone-500 font-mono text-[10px] uppercase tracking-wider font-semibold">助詞功能解碼</span>
+                            <h5 class="text-xl font-serif font-bold text-primary-400 flex items-center gap-2">
+                                「${p}」 <span class="text-sm text-stone-300 font-sans font-medium">${details.role}</span>
+                            </h5>
+                        </div>
+                        <span class="bg-primary-500/10 text-primary-400 border border-primary-500/20 rounded-full px-4 py-1 text-[11px] font-mono select-none font-semibold">${details.formula}</span>
+                    </div>
+                    <p class="text-stone-300 text-xs leading-relaxed mb-4">${details.explanation}</p>
+                    
+                    <span class="text-[10px] text-primary-400 font-bold tracking-wider block mb-2 uppercase">點擊句子播放發音範例 (振假名輔助)：</span>
+                    <div class="flex flex-col gap-2">
+                        ${details.examples.map((ex, index) => {
+                            const rawId = `particle-ex-text-${p}-${index}`;
+                            return `
+                            <div onclick="playSampleVoice(getCleanText('${rawId}'), 'Leda')" class="bg-[#1C1D1F] hover:bg-[#252629] border border-stone-800/60 rounded-[14px] p-3 flex justify-between items-center cursor-pointer group transition-all">
+                                <div>
+                                    <p id="${rawId}" class="text-sm font-serif font-medium text-stone-200 tracking-wide">${ex.jp}</p>
+                                    <p class="text-[11px] text-stone-500 mt-0.5">${ex.cn}</p>
+                                </div>
+                                <span class="w-8 h-8 bg-stone-900 rounded-full flex items-center justify-center text-stone-500 group-hover:text-primary-400 group-hover:bg-primary-500/10 transition-colors shrink-0">
+                                    <i class="fa-solid fa-volume-high text-xs"></i>
+                                </span>
+                            </div>
+                        `}).join('')}
+                    </div>
+                `;
+                detailsContainer.style.opacity = '1';
+            }, 150);
+        }
+
+        // --- SCENARIO 3 - MAP ROUTING FLOW SYSTEM ---
+        const mapDirectionsDatabase = {
+            "station-sensoji": {
+                pathId: "path-station-to-sensoji",
+                dialogues: [
+                    { speaker: "旅客 (A)", text: "すみません、<ruby>浅草駅<rt>あさくさえき</rt></ruby>から<ruby>浅草寺<rt>せんそうじ</rt></ruby>へはどうやって<ruby>行<rt>い</rt></ruby>きますか。", trans: "請問，從淺草車站要怎麼前往淺草寺呢？" },
+                    { speaker: "在地人 (B)", text: "ここから<ruby>道<rt>みち</rt></ruby>をまっすぐ<ruby>行<rt>い</rt></ruby>きます。<ruby>角<rt>かど</rt></ruby>を<ruby>右<rt>みぎ</rt></ruby>へ<ruby>曲<rt>ま</rt></ruby>がります。<ruby>正面<rt>しょうめん</rt></ruby>に<ruby>浅草寺<rt>せんそうじ</rt></ruby>があります。", trans: "從這裡沿著路直走，接著在轉角處右轉，在您的正前方就會看到淺草寺。" }
+                ]
+            },
+            "station-conveni": {
+                pathId: "path-station-to-conveni",
+                dialogues: [
+                    { speaker: "旅客 (A)", text: "すみません、<ruby>浅草駅<rt>あさくさえき</rt></ruby>からコンビニはどこですか。", trans: "請問，從淺草車站出發，便利商店在哪裡呢？" },
+                    { speaker: "在地人 (B)", text: "まっすぐ<ruby>行<rt>い</rt></ruby>って、<ruby>二<rt>ふた</rt></ruby>つ<ruby>目<rt>め</rt></ruby>の<ruby>信号<rt>しんごう</rt></ruby>を<ruby>右<rt>みぎ</rt></ruby>へ<ruby>曲<rt>ま</rt></ruby>がります。コンビニがあります。", trans: "一直往前走，在第二個紅綠燈右轉，就會看到便利商店了。" }
+                ]
+            },
+            "station-shrine": {
+                pathId: "path-station-to-shrine",
+                dialogues: [
+                    { speaker: "旅客 (A)", text: "すみません、<ruby>浅草神社<rt>あさくさじんじゃ</rt></ruby>はどちらの<ruby>方向<rt>ほうこう</rt></ruby>ですか。", trans: "請問，淺草神社是往哪一個方向呢？" },
+                    { speaker: "在地人 (B)", text: "<ruby>浅草寺<rt>せんそうじ</rt></ruby>のほうへまっすぐ<ruby>行<rt>い</rt></ruby>きます。<ruby>浅草寺<rt>せんそうじ</rt></ruby>の<ruby>東側<rt>ひがしがわ</rt></ruby>にあります。", trans: "朝向淺草寺的方向直直走。它就位於淺草寺的東側。" }
+                ]
+            },
+            "kaminarimon-sensoji": {
+                pathId: "path-kaminarimon-to-sensoji",
+                dialogues: [
+                    { speaker: "旅客 (A)", text: "すみません、雷門から<ruby>浅草寺<rt>せんそうじ</rt></ruby>は順次どこですか。", trans: "請問，從雷門出發，淺草寺要怎麼去呢？" },
+                    { speaker: "在地人 (B)", text: "仲見世<ruby>通り<rt>どおり</rt></ruby>をまっすぐ<ruby>行<rt>い</rt></ruby>きます。<ruby>正面<rt>しょうめん</rt></ruby>にあります。", trans: "沿著仲見世通商店街一直往前直走，它就在您的正前方。" }
+                ]
+            },
+            "kaminarimon-conveni": {
+                pathId: "path-kaminarimon-to-conveni",
+                dialogues: [
+                    { speaker: "旅客 (A)", text: "すみません、この<ruby>近<rt>ちか</rt></ruby>くにコンビニはありますか。", trans: "請問，這附近有便利商店嗎？" },
+                    { speaker: "在地人 (B)", text: "はい、雷門からまっすぐ<ruby>行<rt>い</rt></ruby>って、<ruby>角<rt>かど</rt></ruby>を<ruby>右<rt>みぎ</rt></ruby>へ<ruby>曲<rt>ま</rt></ruby>加るとあります。", trans: "有的，從雷門直直往前走，接著在轉角處右轉就會看到了。" }
+                ]
+            },
+            "kaminarimon-shrine": {
+                pathId: "path-kaminarimon-to-shrine",
+                dialogues: [
+                    { speaker: "旅客 (A)", text: "すみません、雷門から<ruby>浅草神社<rt>あさくさじんじゃ</rt></ruby>はどうやって<ruby>行<rt>い</rt></ruby>きますか。", trans: "請問，從雷門要怎麼前往淺草神社呢？" },
+                    { speaker: "在地人 (B)", text: "<ruby>浅草寺<rt>せんそうじ</rt></ruby>の方向へまっすぐ<ruby>行<rt>い</rt></ruby>きます。本堂の右にあります。", trans: "朝向淺草寺的方向一直往前直走，它就位在本堂的右邊。" }
+                ]
+            }
+        };
+
+        function updateMapRouting() {
+            const start = document.getElementById('map-start-node').value;
+            const end = document.getElementById('map-end-node').value;
+            const routeKey = `${start}-${end}`;
+
+            // Reset all paths
+            Object.values(mapDirectionsDatabase).forEach(item => {
+                const el = document.getElementById(item.pathId);
+                if (el) el.classList.replace('opacity-100', 'opacity-0');
+            });
+
+            const data = mapDirectionsDatabase[routeKey];
+            if (!data) return;
+
+            // Highlight target path guide
+            const pathElement = document.getElementById(data.pathId);
+            if (pathElement) {
+                pathElement.classList.replace('opacity-0', 'opacity-100');
+            }
+
+            // Render Dialogue Panel using pure white card blocks
+            const consoleNode = document.getElementById('map-dialogue-console');
+            consoleNode.innerHTML = '';
+
+            data.dialogues.forEach((dlg, idx) => {
+                const lineId = `map-dlg-line-${routeKey}-${idx}`;
+                consoleNode.innerHTML += `
+                    <div class="p-4 bg-white border border-stone-200/60 rounded-[14px] relative group flex flex-col justify-between shadow-sm">
+                        <div class="flex justify-between items-center gap-2">
+                            <span class="text-[10px] font-bold text-white bg-primary-500 px-3 py-1 rounded-full">${dlg.speaker}</span>
+                            <button onclick="playSampleVoice(getCleanText('${lineId}'), 'Leda')" class="w-8 h-8 bg-stone-50 hover:bg-primary-500 hover:text-white rounded-full flex items-center justify-center text-stone-400 transition-colors shrink-0"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                        </div>
+                        <p id="${lineId}" class="text-sm font-serif font-semibold text-navy-800 mt-3 leading-relaxed tracking-wide">${dlg.text}</p>
+                        <p class="text-[11px] text-stone-500 mt-1.5 font-sans font-medium">${dlg.trans}</p>
+                    </div>
+                `;
+            });
+
+            showToast(`地圖已更新路線，已為您自動載入對應會話！`);
+        }
+
+        // --- Scenario 4 - 四季祭典與動態問答資料庫 ---
+        const matsuriSeasonalDatabase = {
+            'spring': {
+                title: "春之祭典：お花見 (賞櫻會)",
+                subTitle: "春季活動 ✦ 四月櫻花盛放",
+                intro: "「お花見」是日本春季最富情懷的民俗。每逢四月櫻花盛開，男女老少、公司同仁或親朋好友，皆會相聚在盛開的櫻花樹下，鋪上藍色防水布，一邊品嚐著賞櫻便當（花見弁当）、飲茶喝酒，一邊讚嘆生命短暫卻極致綻放的美學。",
+                tradition: "在賞櫻聚會中，常伴有「花見団子（三色糰子）」，其粉色、白色與綠色分別象徵春天的櫻花、冬天的白雪與夏天的綠草，承載著歲月流轉的虔誠和敬畏。",
+                vocab: ["お花見（おはなみ）", "桜（さくら）", "団子（だんご）"],
+                quiz: {
+                    question: "在櫻花樹下舉辦「お花見（賞櫻會）」時，以下哪一項是不禮貌的禁忌行為？",
+                    options: [
+                        { text: "攜帶自製的賞櫻便當和冷飲。", isCorrect: false },
+                        { text: "折下美麗的櫻花樹枝帶回家插花，或拉扯樹枝拍照。", isCorrect: true },
+                        { text: "與身旁的陌生人微笑點頭打招呼並說請多指教。", isCorrect: false }
+                    ],
+                    correctExplanation: "🎉 答對了！拉扯、折損櫻花樹枝在日本是非常嚴重的禁忌，因為這會傷害樹木並破壞公共美學。賞櫻應保持『只用眼睛欣賞、不帶走一葉一木』的修養。"
+                }
+            },
+            'summer': {
+                title: "夏之大祭：祇園祭 (京都千年護佑)",
+                subTitle: "日本三大祭典之一 ✦ 七月京都盛大展開",
+                intro: "「祇園祭」擁有超過一千年的歷史，起源於平安時代，為了消除當時在京都肆虐的疫病而舉辦的御靈會。每年整個七月，京都街頭皆會被精美的『山鉾（やまほこ）』花車、震耳欲聾的祇園囃子配樂，與身穿浴衣（ゆかた）的狂歡人群所包圍。",
+                tradition: "祭典的高潮在於「山鉾巡行」，數十輛高達數層樓、雕刻著極致工藝的巨型木造花車，完全不使用一根釘子，全憑繩索捆綁，在數百人的協力下拉動，展現京都千年傳承的神聖工藝技術。",
+                vocab: ["祇園祭（ぎおんまつり）", "山鉾（やまほこ）", "浴衣（ゆかた）"],
+                quiz: {
+                    question: "在炎熱的夏天身穿「浴衣（ゆかた）」參加祭典時，衣服衣襟的重疊順序有何規定？",
+                    options: [
+                        { text: "左襟壓在右襟之上（從正面看像 Y 字，右手能伸入衣襟）。", isCorrect: true },
+                        { text: "右襟壓在左襟之上（右手伸不進去）。", isCorrect: false },
+                        { text: "沒有任何規定，怎麼方便怎麼穿。", isCorrect: false }
+                    ],
+                    correctExplanation: "🎉 答對了！身穿浴衣和和服時，必須保持『左襟在上（左前）』的原則。若反過來穿成『右襟在上（右前）』，在日本是屬於壽衣（給往生者穿）的穿法，是非常不吉利的禁忌喔！"
+                }
+            },
+            'autumn': {
+                title: "秋之祭典：紅葉狩り (追尋楓葉的足跡)",
+                subTitle: "秋季活動 ✦ 十一月秋意漸濃",
+                intro: "「紅葉狩り（もみじがり）」意指欣賞紅葉。這裡的『狩り（狩獵）』並不是真正的獵殺，而是指『漫步山林、追尋大自然楓紅美景的心靈之旅』。日本人自古在秋天前往溪谷或寺院，欣賞萬山紅遍、層林盡染的震撼景致。",
+                tradition: "秋季也是豐收的季節。賞楓之餘，人們會品嚐在油鍋中炸至酥脆的『紅葉天婦羅（もみじ天ぷら）』與烤松茸（まつたけ），將視覺與味覺的秋季恩惠融為一體。",
+                vocab: ["紅葉（もみじ）", "紅葉狩り（もみじがり）", "天ぷら（てんぷら）"],
+                quiz: {
+                    question: "在秋天進行「紅葉狩り（賞楓）」時，遇到掉落在神聖寺院地面的紅葉，該如何處理？",
+                    options: [
+                        { text: "可以撿起掉在地上的落葉當書籤，但不可強行摘取樹上的楓葉。", isCorrect: true },
+                        { text: "直接攀爬樹木、拉扯高處的樹枝以便拍攝特寫。", isCorrect: false },
+                        { text: "將整包吃完的垃圾丟在紅葉林中，留作紀念。", isCorrect: false }
+                    ],
+                    correctExplanation: "🎉 答對了！賞楓最核心的禮儀是不可任意攀爬、拉扯樹木。撿拾地上自然掉落的落葉製作成書籤是被允許的，但必須尊重寺院的公共環境，不留下任何垃圾。"
+                }
+            },
+            'winter': {
+                title: "冬之祈願：初詣 (新年的首次守護)",
+                subTitle: "新年民俗 ✦ 一月一日至三日",
+                intro: "「初詣（はつもうde）」是指在一月一日至三日（新年期間），前往當地的神社或寺院進行一年的首次參拜，感謝過去一年的保佑，並祈求新的一年身體健康、事業順利、學業進步。神社周圍會擺滿熱鬧的小吃攤，充滿節慶氛圍。",
+                tradition: "參拜者會購買『御守（おまもり）』、寫下願望的『繪馬（えま）』，並求一張『御神籤（おみくじ）』。若抽到不好的凶籤，會將其綁在神社的松樹或鐵絲網上，象徵將厄運留給神明來化解。",
+                vocab: ["初詣（はつもうde）", "御守（おまもり）", "繪馬（えま）"],
+                quiz: {
+                    question: "在神社進行「初詣（新年參拜）」時，往賽錢箱投入多少面額的日圓硬幣，在發音上最象徵「結善緣」？",
+                    options: [
+                        { text: "一萬日圓大鈔，代表誠意滿分。", isCorrect: false },
+                        { text: "五日圓硬幣（5円），因為發音近似「ご縁（go-en）」。", isCorrect: true },
+                        { text: "十日圓硬幣（10円），代表十分完美。", isCorrect: false }
+                    ],
+                    correctExplanation: "🎉 答對了！五日圓硬幣在日語中的發音是 'ごえん（Go-en）'，與代表神明緣分的 'ご縁' 諧音相同，象徵祈求與神明結下美好的善緣。參拜時大家最喜歡準備 5 円硬幣！"
+                }
+            }
+        };
+
+        let currentMatsuriSeasonKey = 'spring';
+
+        function selectMatsuriSeason(season) {
+            currentMatsuriSeasonKey = season;
+            const data = matsuriSeasonalDatabase[season];
+
+            // Update Tab styles with pill-shape fully rounded borders
+            const seasons = ['spring', 'summer', 'autumn', 'winter'];
+            seasons.forEach(s => {
+                const node = document.getElementById(`btn-matsuri-${s}`);
+                if (s === season) {
+                    node.className = "px-5 py-2.5 rounded-full text-xs font-bold transition-all border border-primary-500 text-white bg-primary-500 shadow-sm";
+                } else {
+                    node.className = "px-5 py-2.5 rounded-full text-xs font-bold transition-all text-navy-800 border border-transparent hover:border-stone-200 hover:bg-stone-50";
+                }
+            });
+
+            // Populate Cultured Content with pure white container
+            const detailPanel = document.getElementById('matsuri-details-panel');
+            detailPanel.innerHTML = `
+                <div class="mb-6">
+                    <span class="text-[10px] text-primary-500 font-bold tracking-widest block uppercase">${data.subTitle}</span>
+                    <h4 class="text-xl font-serif font-extrabold text-navy-800 mt-1">${data.title}</h4>
+                    <p class="text-navy-700 text-xs leading-relaxed mt-3 font-medium">${data.intro}</p>
+                </div>
+                <div class="bg-primary-50/40 border-l-4 border-primary-500 p-4 rounded-[14px]">
+                    <span class="text-[9px] text-primary-600 font-bold block mb-1">節慶傳統民俗解析</span>
+                    <p class="text-xs text-stone-600 leading-relaxed font-medium">${data.tradition}</p>
+                </div>
+                <!-- Core Vocabulary list per season -->
+                <div class="mt-6 border-t border-stone-200/60 pt-4">
+                    <span class="text-[10px] text-stone-400 font-bold uppercase tracking-wider block mb-2">本期核心詞彙：</span>
+                    <div class="flex flex-wrap gap-2">
+                        ${data.vocab.map(v => `
+                            <span class="bg-[#faf9f7] hover:bg-primary-50 border border-stone-200/60 text-navy-800 text-xs font-serif py-1.5 px-4 rounded-full cursor-pointer transition-colors" onclick="playSampleVoice('${v.split('（')[0]}', 'Leda')">
+                                ${v}
+                            </span>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+
+            // Populate Quiz dynamically based on seasonal selection - Buttons as circle capsules
+            const quizBox = document.getElementById('matsuri-quiz-box');
+            quizBox.innerHTML = `
+                <p class="text-xs text-stone-200 leading-relaxed font-medium"><strong class="text-primary-300">問題：</strong>${data.quiz.question}</p>
+                <div class="flex flex-col gap-2 mt-3">
+                    ${data.quiz.options.map((opt, oIdx) => `
+                        <button onclick="checkMatsuriQuiz(${opt.isCorrect})" class="w-full bg-navy-900/60 hover:bg-primary-500 border border-stone-700 p-3.5 px-5 text-left text-xs rounded-full transition-all hover:translate-x-1 flex justify-between items-center group">
+                            <span class="text-stone-300 group-hover:text-white transition-colors">${opt.text}</span>
+                            <i class="fa-solid fa-angle-right text-stone-600 group-hover:text-white transition-colors"></i>
+                        </button>
+                    `).join('')}
+                </div>
+                <div id="matsuri-quiz-feedback" class="mt-4 p-4 bg-navy-900/90 border border-stone-700 rounded-[14px] text-[11px] text-stone-300 leading-relaxed hidden">
+                    <!-- Feedback populated on user choice -->
+                </div>
+            `;
+
+            showToast(`已切換至: ${data.title}`);
+        }
+
+        function checkMatsuriQuiz(isCorrect) {
+            const feedbackNode = document.getElementById('matsuri-quiz-feedback');
+            const data = matsuriSeasonalDatabase[currentMatsuriSeasonKey];
+
+            feedbackNode.classList.remove('hidden');
+            if (isCorrect) {
+                feedbackNode.innerHTML = `<span class="text-green-400 font-bold block mb-1">🎉 答對了！</span> ${data.quiz.correctExplanation}`;
+                showToast('答對了！獲得了珍貴的祭典文化智慧！');
+            } else {
+                feedbackNode.innerHTML = `<span class="text-red-400 font-bold block mb-1">❌ 答錯囉！</span> 這個選項不符合傳統日本禮儀。請再試一次，或點選其他選項解鎖正確常識！`;
+                showToast('答錯囉，請再想想日本人的生活智慧！', 'error');
+            }
+        }
+
+        // --- Scenario 5 - GEMINI AI COACH ---
+        function fillPrompt(text) {
+            document.getElementById('ai-prompt-input').value = text;
+        }
+
+        async function askGeminiCoach() {
+            const prompt = document.getElementById('ai-prompt-input').value;
+            if (!prompt.trim()) {
+                showToast('請先輸入問題或選擇一個建議卡！', 'error');
+                return;
+            }
+
+            const loader = document.getElementById('ai-loader');
+            const output = document.getElementById('ai-output');
+            const status = document.getElementById('ai-status');
+            const ttsBox = document.getElementById('ai-tts-box');
+
+            loader.classList.remove('hidden');
+            status.innerText = '分析中...';
+            output.innerHTML = '';
+            ttsBox.classList.add('hidden');
+
+            const apiKey = ""; 
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+
+            const systemPrompt = `你是一個非常熱情、專業且具備美學意識的日語文化與語法大師。
+            針對使用者輸入的日語句型、單字或日本文化問題，進行以下結構性的完美剖析：
+            1. 【日語結構拆解】：拆解句子中的單詞、詞性，尤其是助詞（例如 は、が、を、に、對、へ、と）的實際功能作用。
+            2. 【日本微文化脈絡】：補充與該情境或文化相關的趣味日本習慣（如初詣、賞櫻、居酒屋、用餐等）。
+            請使用極簡、乾淨、重點突出的條列格式回答（繁體中文），讓台下的評審和同學一目了然！最後提供一句最核心、完整的日文句子範例。`;
+
+            const payload = {
+                contents: [{ parts: [{ text: prompt }] }],
+                systemInstruction: {
+                    parts: [{ text: systemPrompt }]
+                }
+            };
+
+            try {
+                let delay = 1000;
+                let response;
+                for (let i = 0; i < 3; i++) {
+                    try {
+                        response = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+                        if (response.ok) break;
+                    } catch (e) {
+                        if (i === 2) throw e;
+                        await new Promise(r => setTimeout(r, delay));
+                        delay *= 2;
+                    }
+                }
+
+                if (!response || !response.ok) {
+                    throw new Error('API request failed');
+                }
+
+                const result = await response.json();
+                const aiResponseText = result.candidates?.[0]?.content?.parts?.[0]?.text;
+
+                if (aiResponseText) {
+                    const formattedHtml = aiResponseText
+                        .replace(/\n/g, '<br>')
+                        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                        .replace(/### (.*?)/g, '<h5 class="font-bold text-stone-800 border-b border-stone-100 pb-1 mt-2 mb-1">$1</h5>');
+                    
+                    output.innerHTML = formattedHtml;
+                    status.innerText = '轉譯完成';
+                    showToast('Gemini 已成功剖析您的語法與文化問題！');
+                    ttsBox.classList.remove('hidden');
+                } else {
+                    output.innerText = '抱歉，無法解析生成內容。請重試一次！';
+                    status.innerText = '異常';
+                }
+
+            } catch (error) {
+                console.error(error);
+                output.innerText = '網路或金鑰連線暫時出現問題。此為展演預備狀態，您可以點擊其他情境進行 Web Speech 真人導讀演示。';
+                status.innerText = '離線演示模式';
+                ttsBox.classList.remove('hidden');
+            } finally {
+                loader.classList.add('hidden');
+            }
+        }
+
+        function synthesizeAiResponse() {
+            const outputText = document.getElementById('ai-output').innerText;
+            const jpRegex = /[\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FAF]/g;
+            const jpMatch = outputText.match(jpRegex);
+            
+            if (jpMatch && jpMatch.length > 5) {
+                const cleanedJpText = outputText
+                    .split('\n')
+                    .filter(line => jpRegex.test(line))
+                    .join(' ')
+                    .replace(/【.*?】/g, '') 
+                    .substring(0, 150); 
+
+                playSampleVoice(cleanedJpText, 'Leda');
+            } else {
+                playSampleVoice('日本の文化を一緒に勉強しましょう！', 'Leda');
+            }
+        }
+
+        // Global Initialization trigger
+        window.onload = function() {
+            compileSelfIntro();    
+            renderQuest(0);        
+            initParticleGuide();   
+            updateMapRouting();    
+            selectMatsuriSeason('spring'); 
+        };
+    </script>
+</body>
+</html>
